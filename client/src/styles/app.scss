@@ -1,0 +1,16 @@
+.App {
+  background-color: #a1d9f0;
+  height: 100vh;
+  // React-bootstrap 部件編譯後還是產出bootstrap原生的class
+  .navbar {
+    background-color: #18b3f0;
+
+    button {
+      background-color: blue;
+    }
+  }
+
+  button {
+    background-color: red;
+  }
+}
