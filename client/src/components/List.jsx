@@ -1,12 +1,13 @@
 import React from "react";
 import Todo from "./Todo";
 
-export default function List() {
+export default function List({ title, todos }) {
   return (
     <div className="list p-2 m-1 rounded-lg">
-      <div className="title">List1</div>
-      <Todo></Todo>
-      <Todo></Todo>
+      <div className="title">{title}</div>
+      {todos.map((todo) => (
+        <Todo key={todo.name} name={todo.name} />
+      ))}
     </div>
   );
 }
