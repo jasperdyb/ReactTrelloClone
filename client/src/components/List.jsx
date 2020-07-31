@@ -1,5 +1,6 @@
 import React from "react";
 import Todo from "./Todo";
+import { Button } from "react-bootstrap";
 
 export default function List({ title, todos }) {
   return (
@@ -8,6 +9,9 @@ export default function List({ title, todos }) {
       {todos.map((todo) => (
         <Todo key={todo.name} {...todo} />
       ))}
+      <div className="footer pt-2">
+        <Button className="py-1">+ New</Button>
+      </div>
     </div>
   );
 }

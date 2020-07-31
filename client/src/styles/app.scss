@@ -20,5 +20,21 @@
     .todo {
       background-color: #8ccada;
     }
+    .footer {
+      button {
+        border: none;
+        background-color: #5daae2;
+
+        &:hover {
+          background-color: #8ccada;
+        }
+
+        &:active:focus,
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
   }
 }
