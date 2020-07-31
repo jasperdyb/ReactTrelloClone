@@ -6,7 +6,7 @@ export default function List({ title, todos }) {
     <div className="list p-2 m-1 rounded-lg">
       <div className="title">{title}</div>
       {todos.map((todo) => (
-        <Todo key={todo.name} name={todo.name} />
+        <Todo key={todo.name} {...todo} />
       ))}
     </div>
   );

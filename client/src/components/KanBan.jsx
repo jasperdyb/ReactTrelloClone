@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import KanBanNav from "./KanBanNav";
 import List from "./List";
@@ -41,7 +41,7 @@ export default function KanBan() {
       <Container fluid className="board p-1">
         <Row className="m-0">
           {lists.map((list) => (
-            <List key={list.title} title={list.title} todos={list.todos} />
+            <List key={list.title} {...list} />
           ))}
         </Row>
       </Container>
