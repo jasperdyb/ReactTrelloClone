@@ -10,7 +10,15 @@
     }
   }
 
-  button {
-    background-color: red;
+  .list {
+    width: 252px;
+    background-color: #5daae2;
+
+    .title {
+      color: white;
+    }
+    .todo {
+      background-color: #8ccada;
+    }
   }
 }
