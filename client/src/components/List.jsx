@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Todo from "./Todo";
 import NewTodo from "./NewTodo";
 import { Button } from "react-bootstrap";
 
 export default function List({ title, todos }) {
   const [showNew, updateShowNew] = useState(false);
+  const newTodoRef = useRef(null);
+
+  function toggleShowNew(e) {
+    updateShowNew(!showNew);
+  }
 
   return (
     <div className="list p-2 m-1 rounded-lg">
@@ -12,10 +17,19 @@ export default function List({ title, todos }) {
       {todos.map((todo) => (
         <Todo key={todo.name} {...todo} />
       ))}
-      {showNew && <NewTodo />}
-      <div className="footer pt-2 d-flex">
-        <Button className="py-1 flex-grow-1 text-left">+ New</Button>
-      </div>
+      {showNew && (
+        <NewTodo toggleShowNew={toggleShowNew} newTodoRef={newTodoRef} />
+      )}
+      {!showNew && (
+        <div className="footer pt-2 d-flex">
+          <Button
+            className="py-1 flex-grow-1 text-left"
+            onClick={toggleShowNew}
+          >
+            + New
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
