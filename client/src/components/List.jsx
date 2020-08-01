@@ -21,7 +21,7 @@ export default function List({ title, todos }) {
         <NewTodo toggleShowNew={toggleShowNew} newTodoRef={newTodoRef} />
       )}
       {!showNew && (
-        <div className="footer pt-2 d-flex">
+        <div className="footer d-flex">
           <Button
             className="py-1 flex-grow-1 text-left"
             onClick={toggleShowNew}
