@@ -17,9 +17,21 @@
     .title {
       color: white;
     }
-    .todo {
+
+    .todo,
+    textarea {
       background-color: #8ccada;
     }
+
+    textarea {
+      border: none;
+
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+
     .footer {
       button {
         border: none;

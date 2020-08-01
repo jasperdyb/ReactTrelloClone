@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import KanBanNav from "./KanBanNav";
 import List from "./List";
