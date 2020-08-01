@@ -9,8 +9,8 @@ export default function List({ title, todos }) {
       {todos.map((todo) => (
         <Todo key={todo.name} {...todo} />
       ))}
-      <div className="footer pt-2">
-        <Button className="py-1">+ New</Button>
+      <div className="footer pt-2 d-flex">
+        <Button className="py-1 flex-grow-1 text-left">+ New</Button>
       </div>
     </div>
   );
