@@ -38,12 +38,19 @@ export default function KanBan() {
 
   const [lists, updateLists] = useState(dummyData);
 
+  function addTodo(listIndex, newTodo) {
+    let newLists = [...lists];
+    newLists[listIndex].todos.push({ name: newTodo, finished: false });
+
+    updateLists(newLists);
+  }
+
   return (
     <span>
       <KanBanNav />
       <div fluid className="board p-1">
-        {lists.map((list) => (
-          <List key={list.title} {...list} />
+        {lists.map((list, index) => (
+          <List key={index} {...list} listId={index} addTodo={addTodo} />
         ))}
       </div>
     </span>

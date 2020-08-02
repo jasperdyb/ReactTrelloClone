@@ -3,7 +3,7 @@ import Todo from "./Todo";
 import NewTodo from "./NewTodo";
 import { Button } from "react-bootstrap";
 
-export default function List({ title, todos }) {
+export default function List({ title, todos, listId, addTodo }) {
   const [showNew, updateShowNew] = useState(false);
   const newTodoRef = useRef(null);
 
@@ -18,7 +18,12 @@ export default function List({ title, todos }) {
         <Todo key={todo.name} {...todo} />
       ))}
       {showNew && (
-        <NewTodo toggleShowNew={toggleShowNew} newTodoRef={newTodoRef} />
+        <NewTodo
+          listId={listId}
+          toggleShowNew={toggleShowNew}
+          newTodoRef={newTodoRef}
+          addTodo={addTodo}
+        />
       )}
       {!showNew && (
         <div className="footer d-flex">

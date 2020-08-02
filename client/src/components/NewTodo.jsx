@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 
-export default function NewTodo({ toggleShowNew, newTodoRef }) {
+export default function NewTodo({
+  listId,
+  toggleShowNew,
+  newTodoRef,
+  addTodo,
+}) {
   const [autoHeight, updateAutoHeight] = useState(0);
 
   const textareaStyle = {
@@ -25,6 +30,13 @@ export default function NewTodo({ toggleShowNew, newTodoRef }) {
         ref={newTodoRef}
         onBlur={toggleShowNew}
         onInput={autoResize}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            addTodo(listId, e.target.value);
+            e.target.value = "";
+            toggleShowNew();
+          }
+        }}
       />
     </Form>
   );
