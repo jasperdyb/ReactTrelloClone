@@ -34,7 +34,7 @@ export default function NewTodo({ listId, toggleShowNew, addTodo }) {
         onInput={autoResize}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            handleAddTodo();
+            handleAddTodo(e);
           }
         }}
       />
