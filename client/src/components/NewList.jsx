@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 
-export default function NewList() {
+export default function NewList({ addList }) {
+  const [listName, updateListName] = useState("");
   const [editing, updateEditing] = useState(false);
   const [blockOnBlur, updateBlock] = useState(false);
   const editRef = useRef(null);
@@ -17,6 +18,16 @@ export default function NewList() {
   function handleMouseUp() {
     updateBlock(false);
     editRef.current.focus();
+  }
+
+  function updateValue(e) {
+    updateListName(e.target.value);
+  }
+
+  function handleSubmit() {
+    addList(listName);
+    updateListName("");
+    toggleEditing();
   }
 
   useEffect(() => {
@@ -37,22 +48,25 @@ export default function NewList() {
   } else {
     return (
       <div className="list p-2 m-1  rounded-lg">
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Control
             as="textarea"
             rows="1"
+            value={listName}
             placeholder="Name the new list.."
             ref={editRef}
             onBlur={toggleEditing}
+            onChange={updateValue}
           />
+          <Button
+            type="submit"
+            className="mt-2"
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+          >
+            Save
+          </Button>
         </Form>
-        <Button
-          className="mt-2"
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-        >
-          Save
-        </Button>
       </div>
     );
   }

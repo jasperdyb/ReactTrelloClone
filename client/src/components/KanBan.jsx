@@ -49,6 +49,17 @@ export default function KanBan() {
   const [lists, updateLists] = useState(dummyData);
   const [editState, updateEditState] = useState(editStateInit);
 
+  function addList(listName) {
+    if (listName) {
+      let newLists = [...lists];
+      newLists.push({
+        title: listName,
+        todos: [],
+      });
+      updateLists(newLists);
+    }
+  }
+
   function addTodo(listIndex, newTodo) {
     if (newTodo) {
       let newLists = [...lists];
@@ -96,7 +107,7 @@ export default function KanBan() {
             updateEditState={updateEditState}
           />
         ))}
-        <NewList />
+        <NewList addList={addList} />
         {editState.show && (
           <Edit
             editState={editState}
