@@ -20,6 +20,13 @@ export default function Edit({ editState, updateEditState }) {
     });
   }
 
+  function updateValue(e) {
+    updateEditState({
+      ...editState,
+      value: e.target.value,
+    });
+  }
+
   return (
     <Form className="edit-form">
       <Form.Control
@@ -27,7 +34,9 @@ export default function Edit({ editState, updateEditState }) {
         ref={editRef}
         as="textarea"
         rows="3"
+        value={editState.value}
         onBlur={toggleEditShow}
+        onChange={updateValue}
       />
     </Form>
   );
