@@ -38,6 +38,7 @@
     textarea {
       border: none;
       overflow: hidden;
+      resize: none;
 
       &:focus {
         outline: none;
