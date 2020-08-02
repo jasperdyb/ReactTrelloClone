@@ -15,7 +15,13 @@
     }
   }
 
+  .row {
+    height: 0px;
+  }
+
   .list {
+    display: inline-block;
+    vertical-align: top;
     width: 252px;
     background-color: #5daae2;
 

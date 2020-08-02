@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 
-export default function Todo({ toggleShowNew, newTodoRef }) {
+export default function NewTodo({ toggleShowNew, newTodoRef }) {
   const [autoHeight, updateAutoHeight] = useState(0);
 
   const textareaStyle = {
