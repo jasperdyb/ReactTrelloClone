@@ -24,7 +24,8 @@ export default function List({
         <Todo
           key={index}
           {...todo}
-          index={index}
+          listId={listId}
+          todoId={index}
           updateEditState={updateEditState}
           editRef={editRef}
         />

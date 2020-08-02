@@ -37,18 +37,36 @@ export default function KanBan() {
     },
   ];
 
-  const [lists, updateLists] = useState(dummyData);
-  const [editState, updateEditState] = useState({
+  const editStateInit = {
     show: false,
     dimensions: { top: 0, left: 0, width: 0 },
     value: "",
-  });
+    listId: -1,
+    todoId: -1,
+  };
+
+  const [lists, updateLists] = useState(dummyData);
+  const [editState, updateEditState] = useState(editStateInit);
 
   function addTodo(listIndex, newTodo) {
     let newLists = [...lists];
     newLists[listIndex].todos.push({ name: newTodo, finished: false });
 
     updateLists(newLists);
+  }
+
+  function editTodo() {
+    const { value, listId, todoId } = editState;
+
+    const currentTodo = lists[listId].todos[todoId];
+    let newLists = [...lists];
+    newLists[listId].todos[todoId] = {
+      ...currentTodo,
+      name: value,
+    };
+
+    updateLists(newLists);
+    updateEditState(editStateInit);
   }
 
   return (
@@ -65,7 +83,11 @@ export default function KanBan() {
           />
         ))}
         {editState.show && (
-          <Edit editState={editState} updateEditState={updateEditState}></Edit>
+          <Edit
+            editState={editState}
+            updateEditState={updateEditState}
+            editTodo={editTodo}
+          ></Edit>
         )}
       </div>
     </span>
