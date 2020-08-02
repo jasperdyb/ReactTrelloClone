@@ -29,13 +29,35 @@
       color: white;
     }
 
-    .todo,
-    textarea {
+    .todo {
+      position: relative;
       word-wrap: break-word;
       background-color: #8ccada;
+
+      .edit-button {
+        color: black;
+        position: absolute;
+        background-color: #8ccada;
+        border: none;
+        right: 0px;
+        top: 0px;
+        opacity: 0.75;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &:active:focus,
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
     }
 
     textarea {
+      word-wrap: break-word;
+      background-color: #8ccada;
       border: none;
       overflow: hidden;
       resize: none;
