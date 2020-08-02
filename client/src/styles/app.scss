@@ -29,6 +29,15 @@
       color: white;
     }
 
+    &.new-list {
+      opacity: 0.3;
+      &:active:focus,
+      &:focus {
+        outline: none;
+        box-shadow: none !important;
+      }
+    }
+
     .todo {
       position: relative;
       word-wrap: break-word;

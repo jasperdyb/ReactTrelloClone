@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import KanBanNav from "./KanBanNav";
 import List from "./List";
 import Edit from "./Edit";
+import NewList from "./NewList";
 
 export default function KanBan() {
   const dummyData = [
@@ -95,6 +96,7 @@ export default function KanBan() {
             updateEditState={updateEditState}
           />
         ))}
+        <NewList />
         {editState.show && (
           <Edit
             editState={editState}
