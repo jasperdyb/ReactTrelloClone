@@ -69,6 +69,17 @@ export default function KanBan() {
     updateEditState(editStateInit);
   }
 
+  function deleteTodo() {
+    const { listId, todoId } = editState;
+
+    let newLists = [...lists];
+
+    newLists[listId].todos.splice(todoId, 1);
+
+    updateLists(newLists);
+    updateEditState(editStateInit);
+  }
+
   return (
     <span>
       <KanBanNav />
@@ -87,6 +98,7 @@ export default function KanBan() {
             editState={editState}
             updateEditState={updateEditState}
             editTodo={editTodo}
+            deleteTodo={deleteTodo}
           ></Edit>
         )}
       </div>

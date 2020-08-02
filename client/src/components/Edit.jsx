@@ -1,7 +1,12 @@
 import React, { useRef, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
-export default function Edit({ editState, updateEditState, editTodo }) {
+export default function Edit({
+  editState,
+  updateEditState,
+  editTodo,
+  deleteTodo,
+}) {
   const editRef = useRef(null);
 
   const { top, left, width } = editState.dimensions;
@@ -66,6 +71,7 @@ export default function Edit({ editState, updateEditState, editTodo }) {
             variant="dark"
             onClick={(e) => {
               e.stopPropagation();
+              deleteTodo();
             }}
           >
             Delete
