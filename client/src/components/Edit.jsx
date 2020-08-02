@@ -3,10 +3,17 @@ import { Form, Button } from "react-bootstrap";
 
 export default function Edit({ editState, updateEditState, editTodo }) {
   const editRef = useRef(null);
-  const styles = {
+
+  const { top, left, width } = editState.dimensions;
+  const position = {
     position: "relative",
     margin: 0,
-    ...editState.dimensions,
+    top,
+    left,
+  };
+
+  const textareaSize = {
+    width,
   };
 
   useEffect(() => {
@@ -29,27 +36,41 @@ export default function Edit({ editState, updateEditState, editTodo }) {
 
   return (
     <Form className="edit-form" onClick={toggleEditShow}>
-      <div style={styles}>
-        <Form.Control
-          ref={editRef}
-          as="textarea"
-          rows="3"
-          value={editState.value}
-          // onBlur={toggleEditShow}
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          onChange={updateValue}
-        />
-        <Button
-          className="m-2"
-          onClick={(e) => {
-            e.stopPropagation();
-            editTodo();
-          }}
-        >
-          Save
-        </Button>
+      <div style={position}>
+        <div className="edit-textarea">
+          <Form.Control
+            style={textareaSize}
+            ref={editRef}
+            as="textarea"
+            rows="3"
+            value={editState.value}
+            // onBlur={toggleEditShow}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            onChange={updateValue}
+          />
+          <Button
+            className="m-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              editTodo();
+            }}
+          >
+            Save
+          </Button>
+        </div>
+        <div className="edit-side-menu">
+          <Button
+            className="m-2"
+            variant="dark"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            Delete
+          </Button>
+        </div>
       </div>
     </Form>
   );

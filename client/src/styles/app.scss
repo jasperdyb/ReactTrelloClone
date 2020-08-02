@@ -105,5 +105,11 @@
         box-shadow: none;
       }
     }
+
+    .edit-textarea,
+    .edit-side-menu {
+      display: inline-block;
+      vertical-align: top;
+    }
   }
 }
