@@ -31,12 +31,13 @@
 
     .todo,
     textarea {
+      word-wrap: break-word;
       background-color: #8ccada;
-      overflow: hidden;
     }
 
     textarea {
       border: none;
+      overflow: hidden;
 
       &:focus {
         outline: none;
