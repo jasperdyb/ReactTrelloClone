@@ -3,10 +3,20 @@ import { Button, Form } from "react-bootstrap";
 
 export default function NewList() {
   const [editing, updateEditing] = useState(false);
+  const [blockOnBlur, updateBlock] = useState(false);
   const editRef = useRef(null);
 
   function toggleEditing() {
-    updateEditing(!editing);
+    if (!blockOnBlur) updateEditing(!editing);
+  }
+
+  function handleMouseDown() {
+    updateBlock(true);
+  }
+
+  function handleMouseUp() {
+    updateBlock(false);
+    editRef.current.focus();
   }
 
   useEffect(() => {
@@ -36,6 +46,13 @@ export default function NewList() {
             onBlur={toggleEditing}
           />
         </Form>
+        <Button
+          className="mt-2"
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+        >
+          Save
+        </Button>
       </div>
     );
   }
