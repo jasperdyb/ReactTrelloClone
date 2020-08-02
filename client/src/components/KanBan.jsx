@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import KanBanNav from "./KanBanNav";
 import List from "./List";
+import Edit from "./Edit";
 
 export default function KanBan() {
   const dummyData = [
@@ -37,6 +38,11 @@ export default function KanBan() {
   ];
 
   const [lists, updateLists] = useState(dummyData);
+  const [editState, updateEditState] = useState({
+    show: false,
+    dimensions: { top: 0, left: 0, width: 0 },
+    value: "",
+  });
 
   function addTodo(listIndex, newTodo) {
     let newLists = [...lists];
@@ -50,8 +56,15 @@ export default function KanBan() {
       <KanBanNav />
       <div className="board p-1">
         {lists.map((list, index) => (
-          <List key={index} {...list} listId={index} addTodo={addTodo} />
+          <List
+            key={index}
+            {...list}
+            listId={index}
+            addTodo={addTodo}
+            updateEditState={updateEditState}
+          />
         ))}
+        {editState.show && <Edit editState={editState}></Edit>}
       </div>
     </span>
   );

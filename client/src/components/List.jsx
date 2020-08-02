@@ -3,7 +3,13 @@ import Todo from "./Todo";
 import NewTodo from "./NewTodo";
 import { Button } from "react-bootstrap";
 
-export default function List({ title, todos, listId, addTodo }) {
+export default function List({
+  title,
+  todos,
+  listId,
+  addTodo,
+  updateEditState,
+}) {
   const [showNew, updateShowNew] = useState(false);
   const newTodoRef = useRef(null);
 
@@ -14,8 +20,13 @@ export default function List({ title, todos, listId, addTodo }) {
   return (
     <div className="list p-2 m-1 rounded-lg">
       <div className="title">{title}</div>
-      {todos.map((todo) => (
-        <Todo key={todo.name} {...todo} />
+      {todos.map((todo, index) => (
+        <Todo
+          key={index}
+          {...todo}
+          index={index}
+          updateEditState={updateEditState}
+        />
       ))}
       {showNew && (
         <NewTodo
