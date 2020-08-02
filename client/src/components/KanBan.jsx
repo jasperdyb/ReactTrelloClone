@@ -64,7 +64,9 @@ export default function KanBan() {
             updateEditState={updateEditState}
           />
         ))}
-        {editState.show && <Edit editState={editState}></Edit>}
+        {editState.show && (
+          <Edit editState={editState} updateEditState={updateEditState}></Edit>
+        )}
       </div>
     </span>
   );

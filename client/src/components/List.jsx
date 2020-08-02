@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Todo from "./Todo";
 import NewTodo from "./NewTodo";
 import { Button } from "react-bootstrap";
@@ -9,9 +9,9 @@ export default function List({
   listId,
   addTodo,
   updateEditState,
+  editRef,
 }) {
   const [showNew, updateShowNew] = useState(false);
-  const newTodoRef = useRef(null);
 
   function toggleShowNew(e) {
     updateShowNew(!showNew);
@@ -26,13 +26,13 @@ export default function List({
           {...todo}
           index={index}
           updateEditState={updateEditState}
+          editRef={editRef}
         />
       ))}
       {showNew && (
         <NewTodo
           listId={listId}
           toggleShowNew={toggleShowNew}
-          newTodoRef={newTodoRef}
           addTodo={addTodo}
         />
       )}

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "react-bootstrap";
 
-export default function Todo({ name, index, updateEditState }) {
+export default function Todo({ name, index, updateEditState, editRef }) {
   const [isOver, setIsOver] = useState(false);
   const targetRef = useRef(null);
 
