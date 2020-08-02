@@ -18,19 +18,23 @@ export default function NewTodo({ listId, toggleShowNew, addTodo }) {
     updateAutoHeight(newTodoRef.current.scrollHeight);
   }
 
+  function handleAddTodo(e) {
+    addTodo(listId, e.target.value);
+    e.target.value = "";
+    toggleShowNew();
+  }
+
   return (
     <Form>
       <Form.Control
         as="textarea"
         style={textareaStyle}
         ref={newTodoRef}
-        onBlur={toggleShowNew}
+        onBlur={handleAddTodo}
         onInput={autoResize}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            addTodo(listId, e.target.value);
-            e.target.value = "";
-            toggleShowNew();
+            handleAddTodo();
           }
         }}
       />
