@@ -49,10 +49,12 @@ export default function KanBan() {
   const [editState, updateEditState] = useState(editStateInit);
 
   function addTodo(listIndex, newTodo) {
-    let newLists = [...lists];
-    newLists[listIndex].todos.push({ name: newTodo, finished: false });
+    if (newTodo) {
+      let newLists = [...lists];
+      newLists[listIndex].todos.push({ name: newTodo, finished: false });
 
-    updateLists(newLists);
+      updateLists(newLists);
+    }
   }
 
   function editTodo() {
