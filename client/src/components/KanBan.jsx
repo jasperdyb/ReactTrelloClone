@@ -48,7 +48,7 @@ export default function KanBan() {
   return (
     <span>
       <KanBanNav />
-      <div fluid className="board p-1">
+      <div className="board p-1">
         {lists.map((list, index) => (
           <List key={index} {...list} listId={index} addTodo={addTodo} />
         ))}
