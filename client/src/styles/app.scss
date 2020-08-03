@@ -27,6 +27,13 @@
 
     .title {
       color: white;
+      background-color: #5daae2;
+      cursor: pointer;
+
+      &.editing {
+        color: black;
+        background-color: white;
+      }
     }
 
     &.new-list {
