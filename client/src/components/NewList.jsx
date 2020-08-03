@@ -15,19 +15,24 @@ export default function NewList({ addList }) {
     updateBlock(true);
   }
 
-  function handleMouseUp() {
+  function handleClick() {
+    if (listName) {
+      addList(listName);
+      updateListName("");
+      toggleEditing();
+    } else {
+      updateBlock(false);
+      editRef.current.focus();
+    }
+  }
+
+  function handleOnDragLeave() {
+    toggleEditing();
     updateBlock(false);
-    editRef.current.focus();
   }
 
   function updateValue(e) {
     updateListName(e.target.value);
-  }
-
-  function handleSubmit() {
-    addList(listName);
-    updateListName("");
-    toggleEditing();
   }
 
   useEffect(() => {
@@ -48,7 +53,7 @@ export default function NewList({ addList }) {
   } else {
     return (
       <div className="list p-2 m-1  rounded-lg">
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Form.Control
             as="textarea"
             rows="1"
@@ -62,7 +67,8 @@ export default function NewList({ addList }) {
             type="submit"
             className="mt-2"
             onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
+            onClick={handleClick}
+            onDragLeave={handleOnDragLeave}
           >
             Save
           </Button>
