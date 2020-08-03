@@ -77,6 +77,13 @@ export default function KanBan() {
     }
   }
 
+  function deleteList(listIndex) {
+    let newLists = [...lists];
+    newLists.splice(listIndex, 1);
+    updateLists(newLists);
+    updateMenuState(menuStateInit);
+  }
+
   function addTodo(listIndex, newTodo) {
     if (newTodo) {
       let newLists = [...lists];
@@ -136,7 +143,11 @@ export default function KanBan() {
           ></Edit>
         )}
         {menuState.show && (
-          <ListMenu menuState={menuState} updateMenuState={updateMenuState} />
+          <ListMenu
+            menuState={menuState}
+            updateMenuState={updateMenuState}
+            deleteList={deleteList}
+          />
         )}
       </div>
     </span>

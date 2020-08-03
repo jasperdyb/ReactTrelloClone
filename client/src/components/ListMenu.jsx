@@ -1,7 +1,7 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
-export default function ListMenu({ menuState, updateMenuState }) {
+export default function ListMenu({ menuState, updateMenuState, deleteList }) {
   const { top, left } = menuState.dimensions;
   const position = {
     position: "relative",
@@ -28,7 +28,9 @@ export default function ListMenu({ menuState, updateMenuState }) {
         </Modal.Header>
 
         <Modal.Body>
-          <div className="menu-item">Delete list</div>
+          <div className="menu-item" onClick={deleteList}>
+            Delete list
+          </div>
         </Modal.Body>
       </Modal.Dialog>
     </div>

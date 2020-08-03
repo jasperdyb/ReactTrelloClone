@@ -7,8 +7,12 @@ export default function NewList({ addList }) {
   const [blockOnBlur, updateBlock] = useState(false);
   const editRef = useRef(null);
 
-  function toggleEditing() {
-    if (!blockOnBlur) updateEditing(!editing);
+  function showEdit() {
+    updateEditing(true);
+  }
+
+  function hideEdit() {
+    if (!blockOnBlur) updateEditing(false);
   }
 
   function handleMouseDown() {
@@ -19,15 +23,21 @@ export default function NewList({ addList }) {
     if (listName) {
       addList(listName);
       updateListName("");
-      toggleEditing();
-    } else {
       updateBlock(false);
+      console.log(blockOnBlur);
+      hideEdit();
+    }
+  }
+
+  function handleMouseUp() {
+    updateBlock(false);
+    if (editRef.current) {
       editRef.current.focus();
     }
   }
 
   function handleOnDragLeave() {
-    toggleEditing();
+    hideEdit();
     updateBlock(false);
   }
 
@@ -43,10 +53,7 @@ export default function NewList({ addList }) {
 
   if (!editing) {
     return (
-      <Button
-        className="list p-2 m-1  rounded-lg new-list"
-        onClick={toggleEditing}
-      >
+      <Button className="list p-2 m-1  rounded-lg new-list" onClick={showEdit}>
         Add a new list...
       </Button>
     );
@@ -60,7 +67,7 @@ export default function NewList({ addList }) {
             value={listName}
             placeholder="Name the new list.."
             ref={editRef}
-            onBlur={toggleEditing}
+            onBlur={hideEdit}
             onChange={updateValue}
           />
           <Button
@@ -68,6 +75,7 @@ export default function NewList({ addList }) {
             className="mt-2"
             onMouseDown={handleMouseDown}
             onClick={handleClick}
+            onMouseUp={handleMouseUp}
             onDragLeave={handleOnDragLeave}
           >
             Save
