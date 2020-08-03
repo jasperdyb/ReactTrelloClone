@@ -18,24 +18,18 @@ export default function ListMenu({ menuState, updateMenuState }) {
     <div className="menu-layer" onClick={hideMenu}>
       <Modal.Dialog
         style={position}
+        size="sm"
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
         <Modal.Header closeButton onHide={hideMenu}>
-          <Modal.Title>Modal title</Modal.Title>
+          <h7>List action</h7>
         </Modal.Header>
 
         <Modal.Body>
-          <p>Modal body text goes here.</p>
+          <div className="menu-item">Delete list</div>
         </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={hideMenu}>
-            Close
-          </Button>
-          <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
       </Modal.Dialog>
     </div>
   );
