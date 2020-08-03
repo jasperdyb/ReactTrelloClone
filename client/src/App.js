@@ -4,7 +4,7 @@ import "./styles/app.scss";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App ">
       <KanBan></KanBan>
     </div>
   );
