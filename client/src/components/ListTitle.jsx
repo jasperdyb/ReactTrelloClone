@@ -22,6 +22,11 @@ export default function ListTitle({ title }) {
     updateAutoHeight(titleRef.current.scrollHeight);
   }
 
+  function handleOnClick() {
+    triggerEditList();
+    titleRef.current.select();
+  }
+
   function handleOnBlur() {
     triggerEditList();
   }
@@ -34,7 +39,7 @@ export default function ListTitle({ title }) {
           style={textareaStyle}
           as="textarea"
           value={title}
-          onClick={triggerEditList}
+          onClick={editing ? null : handleOnClick}
           onBlur={handleOnBlur}
           ref={titleRef}
           readOnly={!editing}
