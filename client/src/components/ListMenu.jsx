@@ -24,7 +24,7 @@ export default function ListMenu({ menuState, updateMenuState, deleteList }) {
         }}
       >
         <Modal.Header closeButton onHide={hideMenu}>
-          <h7>List action</h7>
+          <h6>List action</h6>
         </Modal.Header>
 
         <Modal.Body>

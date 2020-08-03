@@ -77,9 +77,10 @@ export default function KanBan() {
     }
   }
 
-  function deleteList(listIndex) {
+  function deleteList() {
     let newLists = [...lists];
-    newLists.splice(listIndex, 1);
+    newLists.splice(menuState.listId, 1);
+    console.log(newLists);
     updateLists(newLists);
     updateMenuState(menuStateInit);
   }

@@ -52,7 +52,7 @@ export default function ListTitle({
     updateMenuState({
       show: true,
       dimensions: { top: bottom + 2, left: left },
-      listId: -1,
+      listId: listId,
     });
   }
 
