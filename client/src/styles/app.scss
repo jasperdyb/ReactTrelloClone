@@ -26,13 +26,41 @@
     background-color: #5daae2;
 
     .title {
-      color: white;
-      background-color: #5daae2;
-      cursor: pointer;
+      .title-text {
+        color: white;
+        width: 80%;
+        border: none;
+        overflow: hidden;
+        resize: none;
+        background-color: #5daae2;
+        vertical-align: top;
 
-      &.editing {
-        color: black;
-        background-color: white;
+        cursor: pointer;
+
+        &.editing {
+          color: black;
+          background-color: white;
+        }
+      }
+
+      .menu-button {
+        vertical-align: top;
+        background-color: #5daae2;
+        border: none;
+
+        &:hover {
+          background-color: #5193c2;
+        }
+
+        &:active {
+          background-color: #3d7297;
+        }
+
+        &:active:focus,
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
       }
     }
 
@@ -71,7 +99,7 @@
       }
     }
 
-    textarea {
+    .new-todo {
       word-wrap: break-word;
       background-color: #8ccada;
       border: none;

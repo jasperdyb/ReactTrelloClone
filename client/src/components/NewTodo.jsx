@@ -28,6 +28,7 @@ export default function NewTodo({ listId, toggleShowNew, addTodo }) {
     <Form>
       <Form.Control
         as="textarea"
+        className="new-todo"
         style={textareaStyle}
         ref={newTodoRef}
         onBlur={handleAddTodo}

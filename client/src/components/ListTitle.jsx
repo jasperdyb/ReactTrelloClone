@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 export default function ListTitle({ title, editListTitle, listId }) {
   const [editing, updateEditing] = useState(false);
@@ -38,9 +40,9 @@ export default function ListTitle({ title, editListTitle, listId }) {
   }
 
   return (
-    <Form>
+    <Form className="title d-flex ">
       <Form.Control
-        className={`title p-1 ${editing ? "editing" : ""}`}
+        className={`p-1 ${editing ? "editing" : ""} flex-grow-1 title-text`}
         style={textareaStyle}
         as="textarea"
         defaultValue={title}
@@ -55,6 +57,9 @@ export default function ListTitle({ title, editListTitle, listId }) {
         ref={titleRef}
         readOnly={!editing}
       />
+      <Button className="menu-button" size="sm">
+        <FontAwesomeIcon icon={faBars} />
+      </Button>
     </Form>
   );
 }
