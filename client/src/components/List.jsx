@@ -11,6 +11,7 @@ export default function List({
   addTodo,
   updateEditState,
   editListTitle,
+  updateMenuState,
 }) {
   const [showNew, updateShowNew] = useState(false);
 
@@ -20,7 +21,12 @@ export default function List({
 
   return (
     <div className="list p-2 m-1 rounded-lg">
-      <ListTitle title={title} editListTitle={editListTitle} listId={listId} />
+      <ListTitle
+        title={title}
+        editListTitle={editListTitle}
+        listId={listId}
+        updateMenuState={updateMenuState}
+      />
       {todos.map((todo, index) => (
         <Todo
           key={index}

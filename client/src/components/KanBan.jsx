@@ -3,6 +3,7 @@ import KanBanNav from "./KanBanNav";
 import List from "./List";
 import Edit from "./Edit";
 import NewList from "./NewList";
+import ListMenu from "./ListMenu";
 
 export default function KanBan() {
   const dummyData = [
@@ -46,8 +47,15 @@ export default function KanBan() {
     todoId: -1,
   };
 
+  const menuStateInit = {
+    show: false,
+    dimensions: { top: 0, left: 0 },
+    listId: -1,
+  };
+
   const [lists, updateLists] = useState(dummyData);
   const [editState, updateEditState] = useState(editStateInit);
+  const [menuState, updateMenuState] = useState(menuStateInit);
 
   function addList(listName) {
     if (listName) {
@@ -115,6 +123,7 @@ export default function KanBan() {
             addTodo={addTodo}
             updateEditState={updateEditState}
             editListTitle={editListTitle}
+            updateMenuState={updateMenuState}
           />
         ))}
         <NewList addList={addList} />
@@ -125,6 +134,9 @@ export default function KanBan() {
             editTodo={editTodo}
             deleteTodo={deleteTodo}
           ></Edit>
+        )}
+        {menuState.show && (
+          <ListMenu menuState={menuState} updateMenuState={updateMenuState} />
         )}
       </div>
     </span>

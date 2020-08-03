@@ -3,10 +3,16 @@ import { Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-export default function ListTitle({ title, editListTitle, listId }) {
+export default function ListTitle({
+  title,
+  editListTitle,
+  listId,
+  updateMenuState,
+}) {
   const [editing, updateEditing] = useState(false);
   const [autoHeight, updateAutoHeight] = useState(0);
   const titleRef = useRef(null);
+  const menuButtonRef = useRef(null);
 
   const textareaStyle = {
     height: `${autoHeight}px`,
@@ -39,6 +45,17 @@ export default function ListTitle({ title, editListTitle, listId }) {
     titleRef.current.blur();
   }
 
+  function showMenu(e) {
+    e.preventDefault();
+
+    const { bottom, left } = menuButtonRef.current.getBoundingClientRect();
+    updateMenuState({
+      show: true,
+      dimensions: { top: bottom + 2, left: left },
+      listId: -1,
+    });
+  }
+
   return (
     <Form className="title d-flex ">
       <Form.Control
@@ -57,7 +74,12 @@ export default function ListTitle({ title, editListTitle, listId }) {
         ref={titleRef}
         readOnly={!editing}
       />
-      <Button className="menu-button" size="sm">
+      <Button
+        className="menu-button"
+        size="sm"
+        ref={menuButtonRef}
+        onClick={showMenu}
+      >
         <FontAwesomeIcon icon={faBars} />
       </Button>
     </Form>
