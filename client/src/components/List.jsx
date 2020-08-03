@@ -10,6 +10,7 @@ export default function List({
   listId,
   addTodo,
   updateEditState,
+  editListTitle,
 }) {
   const [showNew, updateShowNew] = useState(false);
 
@@ -19,7 +20,7 @@ export default function List({
 
   return (
     <div className="list p-2 m-1 rounded-lg">
-      <ListTitle title={title} />
+      <ListTitle title={title} editListTitle={editListTitle} listId={listId} />
       {todos.map((todo, index) => (
         <Todo
           key={index}

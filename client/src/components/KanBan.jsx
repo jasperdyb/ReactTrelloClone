@@ -60,6 +60,15 @@ export default function KanBan() {
     }
   }
 
+  function editListTitle(listIndex, title) {
+    if (title) {
+      let newLists = [...lists];
+      newLists[listIndex].title = title;
+
+      updateLists(newLists);
+    }
+  }
+
   function addTodo(listIndex, newTodo) {
     if (newTodo) {
       let newLists = [...lists];
@@ -105,6 +114,7 @@ export default function KanBan() {
             listId={index}
             addTodo={addTodo}
             updateEditState={updateEditState}
+            editListTitle={editListTitle}
           />
         ))}
         <NewList addList={addList} />
