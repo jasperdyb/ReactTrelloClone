@@ -36,11 +36,6 @@ export default function NewList({ addList }) {
     }
   }
 
-  function handleOnDragLeave() {
-    hideEdit();
-    updateBlock(false);
-  }
-
   function updateValue(e) {
     updateListName(e.target.value);
   }
@@ -76,7 +71,6 @@ export default function NewList({ addList }) {
             onMouseDown={handleMouseDown}
             onClick={handleClick}
             onMouseUp={handleMouseUp}
-            onDragLeave={handleOnDragLeave}
           >
             Save
           </Button>
