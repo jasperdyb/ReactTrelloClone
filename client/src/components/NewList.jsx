@@ -54,11 +54,10 @@ export default function NewList({ addList }) {
     );
   } else {
     return (
-      <div className="list p-2 m-1  rounded-lg">
+      <div className="list p-2 m-1 rounded-lg new-list-edit">
         <Form>
           <Form.Control
             as="textarea"
-            rows="1"
             value={listName}
             placeholder="Name the new list.."
             ref={editRef}

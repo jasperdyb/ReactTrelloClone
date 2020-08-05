@@ -45,9 +45,9 @@
         width: 80%;
         border: none;
         overflow: hidden;
-        resize: none;
         background-color: #5daae2;
         vertical-align: top;
+        resize: none;
 
         cursor: pointer;
 
@@ -81,6 +81,12 @@
     &.new-list {
       opacity: 0.3;
       @include disBorderAndShadowOnFocus();
+    }
+
+    &.new-list-edit {
+      textarea {
+        resize: none;
+      }
     }
 
     .todo {
