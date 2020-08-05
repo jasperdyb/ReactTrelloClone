@@ -5,7 +5,8 @@ import Edit from "./Edit";
 import NewList from "./NewList";
 import ListMenu from "./ListMenu";
 
-export default function KanBan() {
+export default function KanBan({ todos }) {
+  console.log(todos);
   const dummyData = [
     {
       title: "list1",

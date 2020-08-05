@@ -1,5 +1,5 @@
 import React from "react";
-import KanBan from "./components/KanBan";
+import KanBan from "./containers/KanBanContainer";
 import "./styles/app.scss";
 
 function App() {
