@@ -49,9 +49,16 @@ const todosSlice = createSlice({
       const { listId, todoId } = action.payload;
       state[listId].todos.splice(todoId, 1);
     },
+    addList(state, action) {
+      const { listName } = action.payload;
+      state.push({
+        title: listName,
+        todos: [],
+      });
+    },
   },
 });
 
-export const { addTodo, editTodo, deleteTodo } = todosSlice.actions;
+export const { addTodo, editTodo, deleteTodo, addList } = todosSlice.actions;
 
 export default todosSlice.reducer;

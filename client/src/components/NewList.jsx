@@ -21,10 +21,9 @@ export default function NewList({ addList }) {
 
   function handleClick() {
     if (listName) {
-      addList(listName);
+      addList({ listName });
       updateListName("");
       updateBlock(false);
-      console.log(blockOnBlur);
       hideEdit();
     }
   }

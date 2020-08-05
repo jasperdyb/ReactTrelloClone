@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import KanBanNav from "./KanBanNav";
 import List from "../containers/List";
 import Edit from "../containers/Edit";
-import NewList from "./NewList";
+import NewList from "../containers/NewList";
 import ListMenu from "./ListMenu";
 
 export default function KanBan({ todos }) {
@@ -48,17 +48,6 @@ export default function KanBan({ todos }) {
   const [lists, updateLists] = useState(dummyData);
   const [menuState, updateMenuState] = useState(menuStateInit);
 
-  function addList(listName) {
-    if (listName) {
-      let newLists = [...lists];
-      newLists.push({
-        title: listName,
-        todos: [],
-      });
-      updateLists(newLists);
-    }
-  }
-
   function editListTitle(listIndex, title) {
     if (title) {
       let newLists = [...lists];
@@ -89,7 +78,7 @@ export default function KanBan({ todos }) {
             updateMenuState={updateMenuState}
           />
         ))}
-        <NewList addList={addList} />
+        <NewList />
         <Edit></Edit>
         {menuState.show && (
           <ListMenu
