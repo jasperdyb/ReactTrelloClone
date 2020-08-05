@@ -5,12 +5,12 @@ import Edit from "../containers/Edit";
 import NewList from "../containers/NewList";
 import ListMenu from "../containers/ListMenu";
 
-export default function KanBan({ todos }) {
+export default function KanBan({ lists }) {
   return (
     <>
       <KanBanNav />
       <div className="board  p-1">
-        {todos.map((list, index) => (
+        {lists.map((list, index) => (
           <List key={index} {...list} listId={index} />
         ))}
         <NewList />
