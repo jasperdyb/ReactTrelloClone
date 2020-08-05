@@ -9,12 +9,12 @@ const listMenuSlice = createSlice({
   name: "listMenuSlice",
   initialState: menuStateInit,
   reducers: {
-    updateListMenuState(state, action) {
+    updateMenuState(state, action) {
       return action.payload;
     },
   },
 });
 
-export const { updateListMenuState } = listMenuSlice.actions;
+export const { updateMenuState } = listMenuSlice.actions;
 
 export default listMenuSlice.reducer;

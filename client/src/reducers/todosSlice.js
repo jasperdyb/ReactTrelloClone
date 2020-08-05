@@ -60,6 +60,10 @@ const todosSlice = createSlice({
       const { listId, title } = action.payload;
       state[listId].title = title;
     },
+    deleteList(state, action) {
+      const { listId } = action.payload;
+      state.splice(listId, 1);
+    },
   },
 });
 
@@ -69,6 +73,7 @@ export const {
   deleteTodo,
   addList,
   editList,
+  deleteList,
 } = todosSlice.actions;
 
 export default todosSlice.reducer;
