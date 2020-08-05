@@ -36,7 +36,14 @@ const dummyData = [
 const todosSlice = createSlice({
   name: "todos",
   initialState: dummyData,
-  reducers: {},
+  reducers: {
+    addTodo(state, action) {
+      const { listId, name } = action.payload;
+      state[listId].todos.push({ name: name, finished: false });
+    },
+  },
 });
+
+export const { addTodo } = todosSlice.actions;
 
 export default todosSlice.reducer;

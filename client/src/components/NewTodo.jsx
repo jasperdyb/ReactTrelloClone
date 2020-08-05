@@ -19,7 +19,10 @@ export default function NewTodo({ listId, toggleShowNew, addTodo }) {
   }
 
   function handleAddTodo(e) {
-    addTodo(listId, e.target.value);
+    if (e.target.value.trim()) {
+      addTodo({ listId, name: e.target.value });
+    }
+
     e.target.value = "";
     toggleShowNew();
   }
