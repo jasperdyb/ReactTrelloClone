@@ -48,15 +48,6 @@ export default function KanBan({ todos }) {
   const [lists, updateLists] = useState(dummyData);
   const [menuState, updateMenuState] = useState(menuStateInit);
 
-  function editListTitle(listIndex, title) {
-    if (title) {
-      let newLists = [...lists];
-      newLists[listIndex].title = title;
-
-      updateLists(newLists);
-    }
-  }
-
   function deleteList() {
     let newLists = [...lists];
     newLists.splice(menuState.listId, 1);
@@ -74,7 +65,6 @@ export default function KanBan({ todos }) {
             key={index}
             {...list}
             listId={index}
-            editListTitle={editListTitle}
             updateMenuState={updateMenuState}
           />
         ))}

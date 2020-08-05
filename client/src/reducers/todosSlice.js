@@ -56,9 +56,19 @@ const todosSlice = createSlice({
         todos: [],
       });
     },
+    editList(state, action) {
+      const { listId, title } = action.payload;
+      state[listId].title = title;
+    },
   },
 });
 
-export const { addTodo, editTodo, deleteTodo, addList } = todosSlice.actions;
+export const {
+  addTodo,
+  editTodo,
+  deleteTodo,
+  addList,
+  editList,
+} = todosSlice.actions;
 
 export default todosSlice.reducer;
