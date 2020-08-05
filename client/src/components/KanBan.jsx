@@ -122,36 +122,35 @@ export default function KanBan() {
   return (
     <>
       <KanBanNav />
-      <div className="canvas">
-        <div className="board  p-1">
-          {lists.map((list, index) => (
-            <List
-              key={index}
-              {...list}
-              listId={index}
-              addTodo={addTodo}
-              updateEditState={updateEditState}
-              editListTitle={editListTitle}
-              updateMenuState={updateMenuState}
-            />
-          ))}
-          <NewList addList={addList} />
-          {editState.show && (
-            <Edit
-              editState={editState}
-              updateEditState={updateEditState}
-              editTodo={editTodo}
-              deleteTodo={deleteTodo}
-            ></Edit>
-          )}
-          {menuState.show && (
-            <ListMenu
-              menuState={menuState}
-              updateMenuState={updateMenuState}
-              deleteList={deleteList}
-            />
-          )}
-        </div>
+
+      <div className="board  p-1">
+        {lists.map((list, index) => (
+          <List
+            key={index}
+            {...list}
+            listId={index}
+            addTodo={addTodo}
+            updateEditState={updateEditState}
+            editListTitle={editListTitle}
+            updateMenuState={updateMenuState}
+          />
+        ))}
+        <NewList addList={addList} />
+        {editState.show && (
+          <Edit
+            editState={editState}
+            updateEditState={updateEditState}
+            editTodo={editTodo}
+            deleteTodo={deleteTodo}
+          ></Edit>
+        )}
+        {menuState.show && (
+          <ListMenu
+            menuState={menuState}
+            updateMenuState={updateMenuState}
+            deleteList={deleteList}
+          />
+        )}
       </div>
     </>
   );
