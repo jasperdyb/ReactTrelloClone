@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
 export default function Edit({
@@ -7,6 +7,7 @@ export default function Edit({
   editTodo,
   deleteTodo,
 }) {
+  const [autoHeight, updateAutoHeight] = useState(0);
   const editRef = useRef(null);
 
   const { top, left, width } = editState.dimensions;
@@ -19,10 +20,20 @@ export default function Edit({
 
   const textareaSize = {
     width,
+    height: `${autoHeight}px`,
   };
+
+  function autoResize(e) {
+    const baseHeight = 84;
+    const scrollHeight = editRef.current.scrollHeight;
+
+    const targetHeight = scrollHeight > baseHeight ? scrollHeight : baseHeight;
+    updateAutoHeight(targetHeight);
+  }
 
   useEffect(() => {
     editRef.current.focus();
+    autoResize();
   }, [editRef]);
 
   function toggleEditShow() {
@@ -54,6 +65,12 @@ export default function Edit({
               e.stopPropagation();
             }}
             onChange={updateValue}
+            onInput={autoResize}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                editTodo();
+              }
+            }}
           />
           <Button
             className="m-2"

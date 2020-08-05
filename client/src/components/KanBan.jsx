@@ -122,7 +122,6 @@ export default function KanBan() {
   return (
     <>
       <KanBanNav />
-
       <div className="board  p-1">
         {lists.map((list, index) => (
           <List
