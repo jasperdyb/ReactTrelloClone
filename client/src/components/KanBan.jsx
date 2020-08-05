@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import KanBanNav from "./KanBanNav";
 import List from "./List";
 import Edit from "./Edit";
+import NewList from "./NewList";
+import ListMenu from "./ListMenu";
 
 export default function KanBan() {
   const dummyData = [
@@ -45,8 +47,43 @@ export default function KanBan() {
     todoId: -1,
   };
 
+  const menuStateInit = {
+    show: false,
+    dimensions: { top: 0, left: 0 },
+    listId: -1,
+  };
+
   const [lists, updateLists] = useState(dummyData);
   const [editState, updateEditState] = useState(editStateInit);
+  const [menuState, updateMenuState] = useState(menuStateInit);
+
+  function addList(listName) {
+    if (listName) {
+      let newLists = [...lists];
+      newLists.push({
+        title: listName,
+        todos: [],
+      });
+      updateLists(newLists);
+    }
+  }
+
+  function editListTitle(listIndex, title) {
+    if (title) {
+      let newLists = [...lists];
+      newLists[listIndex].title = title;
+
+      updateLists(newLists);
+    }
+  }
+
+  function deleteList() {
+    let newLists = [...lists];
+    newLists.splice(menuState.listId, 1);
+    console.log(newLists);
+    updateLists(newLists);
+    updateMenuState(menuStateInit);
+  }
 
   function addTodo(listIndex, newTodo) {
     if (newTodo) {
@@ -83,9 +120,9 @@ export default function KanBan() {
   }
 
   return (
-    <span>
+    <>
       <KanBanNav />
-      <div className="board p-1">
+      <div className="board  p-1">
         {lists.map((list, index) => (
           <List
             key={index}
@@ -93,8 +130,11 @@ export default function KanBan() {
             listId={index}
             addTodo={addTodo}
             updateEditState={updateEditState}
+            editListTitle={editListTitle}
+            updateMenuState={updateMenuState}
           />
         ))}
+        <NewList addList={addList} />
         {editState.show && (
           <Edit
             editState={editState}
@@ -103,7 +143,14 @@ export default function KanBan() {
             deleteTodo={deleteTodo}
           ></Edit>
         )}
+        {menuState.show && (
+          <ListMenu
+            menuState={menuState}
+            updateMenuState={updateMenuState}
+            deleteList={deleteList}
+          />
+        )}
       </div>
-    </span>
+    </>
   );
 }

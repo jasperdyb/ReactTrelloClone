@@ -1,10 +1,18 @@
+@mixin disBorderAndShadowOnFocus {
+  &:active:focus,
+  &:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
+}
+
 .App {
   background-color: #a1d9f0;
   height: 100vh;
   width: 100vw;
   position: fixed;
-  left: 0;
-  top: 0;
+  display: flex;
+  flex-direction: column;
 
   // React-bootstrap 部件編譯後還是產出bootstrap原生的class
   .navbar {
@@ -13,6 +21,12 @@
     button {
       background-color: blue;
     }
+  }
+
+  .board {
+    white-space: nowrap;
+    overflow-x: auto;
+    flex-grow: 3;
   }
 
   .row {
@@ -26,7 +40,53 @@
     background-color: #5daae2;
 
     .title {
-      color: white;
+      .title-text {
+        color: white;
+        width: 80%;
+        border: none;
+        overflow: hidden;
+        background-color: #5daae2;
+        vertical-align: top;
+        resize: none;
+
+        cursor: pointer;
+
+        &.editing {
+          color: black;
+          background-color: white;
+        }
+      }
+
+      .menu-button {
+        vertical-align: top;
+        background-color: #5daae2;
+        border: none;
+
+        &:hover {
+          background-color: #5193c2;
+        }
+
+        &:active {
+          background-color: #3d7297;
+        }
+
+        &:active:focus,
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+
+    &.new-list {
+      opacity: 0.3;
+      @include disBorderAndShadowOnFocus();
+    }
+
+    &.new-list-edit {
+      textarea {
+        resize: none;
+      }
     }
 
     .todo {
@@ -47,25 +107,18 @@
           opacity: 1;
         }
 
-        &:active:focus,
-        &:focus {
-          outline: none;
-          box-shadow: none;
-        }
+        @include disBorderAndShadowOnFocus();
       }
     }
 
-    textarea {
+    .new-todo {
       word-wrap: break-word;
       background-color: #8ccada;
       border: none;
       overflow: hidden;
       resize: none;
 
-      &:focus {
-        outline: none;
-        box-shadow: none;
-      }
+      @include disBorderAndShadowOnFocus();
     }
 
     .footer {
@@ -77,11 +130,7 @@
           background-color: #8ccada;
         }
 
-        &:active:focus,
-        &:focus {
-          outline: none;
-          box-shadow: none;
-        }
+        @include disBorderAndShadowOnFocus();
       }
     }
   }
@@ -100,16 +149,28 @@
       overflow: hidden;
       resize: none;
 
-      &:focus {
-        outline: none;
-        box-shadow: none;
-      }
+      @include disBorderAndShadowOnFocus();
     }
 
     .edit-textarea,
     .edit-side-menu {
       display: inline-block;
       vertical-align: top;
+    }
+  }
+
+  .menu-layer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    .menu-item {
+      cursor: pointer;
+      &:active {
+        background-color: #e4f0f6;
+      }
     }
   }
 }

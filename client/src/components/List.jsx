@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Todo from "./Todo";
 import NewTodo from "./NewTodo";
+import ListTitle from "./ListTitle";
 import { Button } from "react-bootstrap";
 
 export default function List({
@@ -9,7 +10,8 @@ export default function List({
   listId,
   addTodo,
   updateEditState,
-  editRef,
+  editListTitle,
+  updateMenuState,
 }) {
   const [showNew, updateShowNew] = useState(false);
 
@@ -19,7 +21,12 @@ export default function List({
 
   return (
     <div className="list p-2 m-1 rounded-lg">
-      <div className="title">{title}</div>
+      <ListTitle
+        title={title}
+        editListTitle={editListTitle}
+        listId={listId}
+        updateMenuState={updateMenuState}
+      />
       {todos.map((todo, index) => (
         <Todo
           key={index}
@@ -27,7 +34,6 @@ export default function List({
           listId={listId}
           todoId={index}
           updateEditState={updateEditState}
-          editRef={editRef}
         />
       ))}
       {showNew && (
