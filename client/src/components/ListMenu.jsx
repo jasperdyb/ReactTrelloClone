@@ -15,24 +15,34 @@ export default function ListMenu({ menuState, updateMenuState, deleteList }) {
   }
 
   return (
-    <div className="menu-layer" onClick={hideMenu}>
-      <Modal.Dialog
-        style={position}
-        size="sm"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        <Modal.Header closeButton onHide={hideMenu}>
-          <h6>List action</h6>
-        </Modal.Header>
+    <>
+      {menuState.show && (
+        <div className="menu-layer" onClick={hideMenu}>
+          <Modal.Dialog
+            style={position}
+            size="sm"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <Modal.Header closeButton onHide={hideMenu}>
+              <h6>List action</h6>
+            </Modal.Header>
 
-        <Modal.Body>
-          <div className="menu-item" onClick={deleteList}>
-            Delete list
-          </div>
-        </Modal.Body>
-      </Modal.Dialog>
-    </div>
+            <Modal.Body>
+              <div
+                className="menu-item"
+                onClick={() => {
+                  deleteList({ listId: menuState.listId });
+                  hideMenu();
+                }}
+              >
+                Delete list
+              </div>
+            </Modal.Body>
+          </Modal.Dialog>
+        </div>
+      )}
+    </>
   );
 }

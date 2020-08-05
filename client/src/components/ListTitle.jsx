@@ -37,7 +37,7 @@ export default function ListTitle({
 
   function handleEditTitle(e) {
     if (e.target.value.trim()) {
-      editListTitle(listId, e.target.value.trim());
+      editListTitle({ listId, title: e.target.value.trim() });
     } else {
       e.target.value = title;
     }

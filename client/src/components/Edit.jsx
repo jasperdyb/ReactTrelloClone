@@ -10,7 +10,9 @@ export default function Edit({
   const [autoHeight, updateAutoHeight] = useState(0);
   const editRef = useRef(null);
 
+  const { value, listId, todoId } = editState;
   const { top, left, width } = editState.dimensions;
+
   const position = {
     position: "relative",
     margin: 0,
@@ -24,15 +26,18 @@ export default function Edit({
   };
 
   function autoResize(e) {
-    const baseHeight = 84;
-    const scrollHeight = editRef.current.scrollHeight;
+    let targetHeight = 84;
+    if (editRef.current) {
+      const scrollHeight = editRef.current.scrollHeight;
 
-    const targetHeight = scrollHeight > baseHeight ? scrollHeight : baseHeight;
+      targetHeight = scrollHeight > targetHeight ? scrollHeight : targetHeight;
+    }
+
     updateAutoHeight(targetHeight);
   }
 
   useEffect(() => {
-    editRef.current.focus();
+    if (editRef.current) editRef.current.focus();
     autoResize();
   }, [editRef]);
 
@@ -51,50 +56,57 @@ export default function Edit({
   }
 
   return (
-    <Form className="edit-form" onClick={toggleEditShow}>
-      <div style={position}>
-        <div className="edit-textarea">
-          <Form.Control
-            style={textareaSize}
-            ref={editRef}
-            as="textarea"
-            rows="3"
-            value={editState.value}
-            // onBlur={toggleEditShow}
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-            onChange={updateValue}
-            onInput={autoResize}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                editTodo();
-              }
-            }}
-          />
-          <Button
-            className="m-2"
-            onClick={(e) => {
-              e.stopPropagation();
-              editTodo();
-            }}
-          >
-            Save
-          </Button>
-        </div>
-        <div className="edit-side-menu">
-          <Button
-            className="m-2"
-            variant="dark"
-            onClick={(e) => {
-              e.stopPropagation();
-              deleteTodo();
-            }}
-          >
-            Delete
-          </Button>
-        </div>
-      </div>
-    </Form>
+    <>
+      {editState.show && (
+        <Form className="edit-form" onClick={toggleEditShow}>
+          <div style={position}>
+            <div className="edit-textarea">
+              <Form.Control
+                style={textareaSize}
+                ref={editRef}
+                as="textarea"
+                rows="3"
+                value={editState.value}
+                // onBlur={toggleEditShow}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                onChange={updateValue}
+                onInput={autoResize}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    editTodo({ value, listId, todoId });
+                    toggleEditShow();
+                  }
+                }}
+              />
+              <Button
+                className="m-2"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  editTodo({ value, listId, todoId });
+                  toggleEditShow();
+                }}
+              >
+                Save
+              </Button>
+            </div>
+            <div className="edit-side-menu">
+              <Button
+                className="m-2"
+                variant="dark"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  deleteTodo({ listId, todoId });
+                  toggleEditShow();
+                }}
+              >
+                Delete
+              </Button>
+            </div>
+          </div>
+        </Form>
+      )}
+    </>
   );
 }
