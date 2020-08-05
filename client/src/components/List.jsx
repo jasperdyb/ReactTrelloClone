@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Todo from "./Todo";
+import Todo from "../containers/Todo";
 import NewTodo from "./NewTodo";
 import ListTitle from "./ListTitle";
 import { Button } from "react-bootstrap";
@@ -9,7 +9,6 @@ export default function List({
   todos,
   listId,
   addTodo,
-  updateEditState,
   editListTitle,
   updateMenuState,
 }) {
@@ -33,7 +32,7 @@ export default function List({
           {...todo}
           listId={listId}
           todoId={index}
-          updateEditState={updateEditState}
+          // updateEditState={updateEditState}
         />
       ))}
       {showNew && (

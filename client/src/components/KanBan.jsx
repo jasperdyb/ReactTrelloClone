@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import KanBanNav from "./KanBanNav";
 import List from "../containers/List";
-import Edit from "./Edit";
+import Edit from "../containers/Edit";
 import NewList from "./NewList";
 import ListMenu from "./ListMenu";
 
@@ -39,14 +39,6 @@ export default function KanBan({ todos }) {
     },
   ];
 
-  const editStateInit = {
-    show: false,
-    dimensions: { top: 0, left: 0, width: 0 },
-    value: "",
-    listId: -1,
-    todoId: -1,
-  };
-
   const menuStateInit = {
     show: false,
     dimensions: { top: 0, left: 0 },
@@ -54,7 +46,6 @@ export default function KanBan({ todos }) {
   };
 
   const [lists, updateLists] = useState(dummyData);
-  const [editState, updateEditState] = useState(editStateInit);
   const [menuState, updateMenuState] = useState(menuStateInit);
 
   function addList(listName) {
@@ -85,31 +76,6 @@ export default function KanBan({ todos }) {
     updateMenuState(menuStateInit);
   }
 
-  function editTodo() {
-    const { value, listId, todoId } = editState;
-
-    const currentTodo = lists[listId].todos[todoId];
-    let newLists = [...lists];
-    newLists[listId].todos[todoId] = {
-      ...currentTodo,
-      name: value,
-    };
-
-    updateLists(newLists);
-    updateEditState(editStateInit);
-  }
-
-  function deleteTodo() {
-    const { listId, todoId } = editState;
-
-    let newLists = [...lists];
-
-    newLists[listId].todos.splice(todoId, 1);
-
-    updateLists(newLists);
-    updateEditState(editStateInit);
-  }
-
   return (
     <>
       <KanBanNav />
@@ -119,20 +85,12 @@ export default function KanBan({ todos }) {
             key={index}
             {...list}
             listId={index}
-            updateEditState={updateEditState}
             editListTitle={editListTitle}
             updateMenuState={updateMenuState}
           />
         ))}
         <NewList addList={addList} />
-        {editState.show && (
-          <Edit
-            editState={editState}
-            updateEditState={updateEditState}
-            editTodo={editTodo}
-            deleteTodo={deleteTodo}
-          ></Edit>
-        )}
+        <Edit></Edit>
         {menuState.show && (
           <ListMenu
             menuState={menuState}
