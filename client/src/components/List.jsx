@@ -3,6 +3,8 @@ import Todo from "../containers/Todo";
 import NewTodo from "./NewTodo";
 import ListTitle from "./ListTitle";
 import { Button } from "react-bootstrap";
+import { useDrop } from "react-dnd";
+import { ItemTypes } from "../dnd/constants.js";
 
 export default function List({
   title,
@@ -18,8 +20,18 @@ export default function List({
     updateShowNew(!showNew);
   }
 
+  const [, drop] = useDrop({
+    accept: ItemTypes.TODO,
+
+    drop: (item, monitor) => {
+      const didDrop = monitor.didDrop(); //用didDrop確認是否已有其他drop target處理drop事件
+      if (didDrop) return;
+      console.log("Drop on list", item);
+    },
+  });
+
   return (
-    <div className="list-wrapper">
+    <div className="list-wrapper" ref={drop}>
       <div className="list p-2 m-1 rounded-lg">
         <ListTitle
           title={title}

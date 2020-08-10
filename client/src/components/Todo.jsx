@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "react-bootstrap";
-import { useDrag } from "react-dnd";
+import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "../dnd/constants.js";
 
 export default function Todo({ name, listId, todoId, updateEditState }) {
@@ -41,24 +41,34 @@ export default function Todo({ name, listId, todoId, updateEditState }) {
     }),
   });
 
+  const [, drop] = useDrop({
+    accept: ItemTypes.TODO,
+
+    drop: (item) => {
+      console.log("Drop on todo", item);
+    },
+  });
+
   return (
-    <div ref={drag}>
-      <div
-        className="todo text-wrap my-1 p-2 rounded"
-        ref={targetRef}
-        onMouseEnter={handleOnOver}
-        onMouseLeave={handleOnLeave}
-      >
-        {name}
-        {isOver && (
-          <Button
-            className="edit-button m-1"
-            size="sm"
-            onClick={handelClickEdit}
-          >
-            <FontAwesomeIcon icon={faPencilAlt} />
-          </Button>
-        )}
+    <div ref={drop}>
+      <div ref={drag}>
+        <div
+          className="todo text-wrap my-1 p-2 rounded"
+          ref={targetRef}
+          onMouseEnter={handleOnOver}
+          onMouseLeave={handleOnLeave}
+        >
+          {name}
+          {isOver && (
+            <Button
+              className="edit-button m-1"
+              size="sm"
+              onClick={handelClickEdit}
+            >
+              <FontAwesomeIcon icon={faPencilAlt} />
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );
