@@ -6,6 +6,7 @@ import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "../dnd/constants.js";
 
 export default function Todo({
+  id,
   name,
   listId,
   todoId,
@@ -42,6 +43,7 @@ export default function Todo({
 
   const [{ isDragging }, drag] = useDrag({
     item: {
+      id,
       orgListId: listId,
       orgTodoId: todoId,
       type: ItemTypes.TODO,
@@ -49,6 +51,9 @@ export default function Todo({
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
+    isDragging: (monitor) => {
+      return id === monitor.getItem().id;
+    },
   });
 
   const [, drop] = useDrop({
