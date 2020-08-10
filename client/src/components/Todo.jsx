@@ -45,7 +45,7 @@ export default function Todo({ name, listId, todoId, updateEditState }) {
     accept: ItemTypes.TODO,
 
     drop: (item) => {
-      console.log("Drop on todo", item);
+      console.log(item, "Drop on todo", `listId:${listId} , todoId:${todoId}`);
     },
   });
 

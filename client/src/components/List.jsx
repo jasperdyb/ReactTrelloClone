@@ -26,7 +26,7 @@ export default function List({
     drop: (item, monitor) => {
       const didDrop = monitor.didDrop(); //用didDrop確認是否已有其他drop target處理drop事件
       if (didDrop) return;
-      console.log("Drop on list", item);
+      console.log(item, "Drop on list", listId);
     },
   });
 
