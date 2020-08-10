@@ -9,7 +9,7 @@ export default function List({
   todos,
   listId,
   addTodo,
-  editListTitle,
+  editList,
   updateMenuState,
 }) {
   const [showNew, updateShowNew] = useState(false);
@@ -22,7 +22,7 @@ export default function List({
     <div className="list p-2 m-1 rounded-lg">
       <ListTitle
         title={title}
-        editListTitle={editListTitle}
+        editList={editList}
         listId={listId}
         updateMenuState={updateMenuState}
       />
