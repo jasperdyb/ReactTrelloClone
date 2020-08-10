@@ -5,7 +5,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 export default function ListTitle({
   title,
-  editListTitle,
+  editList,
   listId,
   updateMenuState,
 }) {
@@ -37,7 +37,7 @@ export default function ListTitle({
 
   function handleEditTitle(e) {
     if (e.target.value.trim()) {
-      editListTitle({ listId, title: e.target.value.trim() });
+      editList({ listId, title: e.target.value.trim() });
     } else {
       e.target.value = title;
     }
