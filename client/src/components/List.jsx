@@ -41,6 +41,7 @@ export default function List({
           });
 
           item.orgListId = endListId;
+          item.orgTodoId = endTodoId;
         }
       }
     },
