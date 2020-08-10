@@ -13,6 +13,7 @@ export default function List({
   addTodo,
   editList,
   updateMenuState,
+  moveTodo,
 }) {
   const [showNew, updateShowNew] = useState(false);
 
@@ -23,10 +24,18 @@ export default function List({
   const [, drop] = useDrop({
     accept: ItemTypes.TODO,
 
+    hover: (item, monitor) => {},
+
     drop: (item, monitor) => {
       const didDrop = monitor.didDrop(); //用didDrop確認是否已有其他drop target處理drop事件
       if (didDrop) return;
-      console.log(item, "Drop on list", listId);
+      const { orgListId, orgTodoId } = item;
+      moveTodo({
+        orgListId,
+        orgTodoId,
+        endListId: listId,
+        endTodoId: todos.length,
+      });
     },
   });
 

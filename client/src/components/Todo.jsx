@@ -5,7 +5,13 @@ import { Button } from "react-bootstrap";
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "../dnd/constants.js";
 
-export default function Todo({ name, listId, todoId, updateEditState }) {
+export default function Todo({
+  name,
+  listId,
+  todoId,
+  updateEditState,
+  moveTodo,
+}) {
   const [isOver, setIsOver] = useState(false);
   const targetRef = useRef(null);
 
@@ -35,7 +41,11 @@ export default function Todo({ name, listId, todoId, updateEditState }) {
   }
 
   const [{ isDragging }, drag] = useDrag({
-    item: { listId, todoId, type: ItemTypes.TODO },
+    item: {
+      orgListId: listId,
+      orgTodoId: todoId,
+      type: ItemTypes.TODO,
+    },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -45,7 +55,8 @@ export default function Todo({ name, listId, todoId, updateEditState }) {
     accept: ItemTypes.TODO,
 
     drop: (item) => {
-      console.log(item, "Drop on todo", `listId:${listId} , todoId:${todoId}`);
+      const { orgListId, orgTodoId } = item;
+      moveTodo({ orgListId, orgTodoId, endListId: listId, endTodoId: todoId });
     },
   });
 
