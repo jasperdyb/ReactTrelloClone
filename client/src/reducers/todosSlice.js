@@ -18,13 +18,19 @@ const dummyData = [
   },
 ];
 
+let currentId = 5;
+
 const todosSlice = createSlice({
   name: "todos",
   initialState: dummyData,
   reducers: {
     addTodo(state, action) {
       const { listId, name } = action.payload;
-      state[listId].todos.push({ name: name, finished: false });
+      state[listId].todos.push({
+        id: (currentId += 1),
+        name: name,
+        finished: false,
+      });
     },
     editTodo(state, action) {
       const { value, listId, todoId } = action.payload;
