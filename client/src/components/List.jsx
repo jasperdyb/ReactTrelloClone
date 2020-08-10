@@ -21,21 +21,28 @@ export default function List({
     updateShowNew(!showNew);
   }
 
-  const [, drop] = useDrop({
+  const [isOverCurrent, drop] = useDrop({
     accept: ItemTypes.TODO,
-
-    hover: (item, monitor) => {},
-
-    drop: (item, monitor) => {
-      const didDrop = monitor.didDrop(); //用didDrop確認是否已有其他drop target處理drop事件
-      if (didDrop) return;
+    collect: (monitor) => ({
+      isOverCurrent: monitor.isOver({ shallow: true }), //shallow為true時，若與子drop元件同時觸發hover，此項為false
+    }),
+    hover: (item, monitor) => {
       const { orgListId, orgTodoId } = item;
-      moveTodo({
-        orgListId,
-        orgTodoId,
-        endListId: listId,
-        endTodoId: todos.length,
-      });
+      const endListId = listId;
+      const endTodoId = todos.length;
+
+      if (orgListId !== endListId) {
+        if (isOverCurrent) {
+          moveTodo({
+            orgListId,
+            orgTodoId,
+            endListId,
+            endTodoId,
+          });
+
+          item.orgListId = endListId;
+        }
+      }
     },
   });
 
