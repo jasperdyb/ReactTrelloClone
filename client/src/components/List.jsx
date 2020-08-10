@@ -50,7 +50,7 @@ export default function List({
         />
         {todos.map((todo, index) => (
           <Todo
-            key={index}
+            key={todo.id}
             {...todo}
             listId={listId}
             todoId={index}

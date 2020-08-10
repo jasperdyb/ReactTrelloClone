@@ -4,31 +4,16 @@ const dummyData = [
   {
     title: "list1",
     todos: [
-      {
-        name: "todo1",
-        finished: false,
-      },
-      {
-        name: "todo2",
-        finished: false,
-      },
+      { id: 1, name: "todo1", finished: false },
+      { id: 2, name: "todo2", finished: false },
     ],
   },
   {
     title: "list2",
     todos: [
-      {
-        name: "todo3",
-        finished: false,
-      },
-      {
-        name: "todo4",
-        finished: false,
-      },
-      {
-        name: "todo5",
-        finished: false,
-      },
+      { id: 1, name: "todo3", finished: false },
+      { id: 2, name: "todo4", finished: false },
+      { id: 3, name: "todo5", finished: false },
     ],
   },
 ];
