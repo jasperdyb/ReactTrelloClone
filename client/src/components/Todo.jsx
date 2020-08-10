@@ -64,21 +64,25 @@ export default function Todo({
     <div ref={drop}>
       <div ref={drag}>
         <div
-          className="todo text-wrap my-1 p-2 rounded"
+          className={`todo text-wrap my-1 p-2 rounded ${
+            isDragging ? "dragged" : null
+          }`}
           ref={targetRef}
           onMouseEnter={handleOnOver}
           onMouseLeave={handleOnLeave}
         >
           {name}
-          {isOver && (
-            <Button
-              className="edit-button m-1"
-              size="sm"
-              onClick={handelClickEdit}
-            >
-              <FontAwesomeIcon icon={faPencilAlt} />
-            </Button>
-          )}
+          {isOver
+            ? !isDragging && (
+                <Button
+                  className="edit-button m-1"
+                  size="sm"
+                  onClick={handelClickEdit}
+                >
+                  <FontAwesomeIcon icon={faPencilAlt} />
+                </Button>
+              )
+            : null}
         </div>
       </div>
     </div>

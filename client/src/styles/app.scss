@@ -113,6 +113,12 @@
 
           @include disBorderAndShadowOnFocus();
         }
+
+        &.dragged {
+          $draggingColor: #c5c1c1;
+          color: $draggingColor;
+          background-color: $draggingColor;
+        }
       }
 
       .new-todo {
