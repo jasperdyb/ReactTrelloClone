@@ -17,7 +17,10 @@ export default function Todo({
   const targetRef = useRef(null);
 
   function handleOnOver() {
-    setIsOver(true);
+    if (!isDragging) {
+      console.log(todoId);
+      setIsOver(true);
+    }
   }
 
   function handleOnLeave() {
@@ -27,7 +30,7 @@ export default function Todo({
   function handelClickEdit(e) {
     e.preventDefault();
 
-    const { top, left, width } = drag.current.getBoundingClientRect();
+    const { top, left, width } = targetRef.current.getBoundingClientRect();
     updateEditState({
       show: true,
       dimensions: {
