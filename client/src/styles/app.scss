@@ -27,110 +27,115 @@
     white-space: nowrap;
     overflow-x: auto;
     flex-grow: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
   }
 
   .row {
     height: 0px;
   }
 
-  .list {
-    display: inline-block;
-    vertical-align: top;
+  .list-wrapper {
     width: 252px;
-    background-color: #5daae2;
 
-    .title {
-      .title-text {
-        color: white;
-        width: 80%;
-        border: none;
-        overflow: hidden;
-        background-color: #5daae2;
-        vertical-align: top;
-        resize: none;
+    .list {
+      background-color: #5daae2;
 
-        cursor: pointer;
+      .title {
+        .title-text {
+          color: white;
+          width: 80%;
+          border: none;
+          overflow: hidden;
+          background-color: #5daae2;
+          vertical-align: top;
+          resize: none;
 
-        &.editing {
+          cursor: pointer;
+
+          &.editing {
+            color: black;
+            background-color: white;
+          }
+        }
+
+        .menu-button {
+          vertical-align: top;
+          background-color: #5daae2;
+          border: none;
+
+          &:hover {
+            background-color: #5193c2;
+          }
+
+          &:active {
+            background-color: #3d7297;
+          }
+
+          &:active:focus,
+          &:focus {
+            outline: none;
+            box-shadow: none;
+          }
+        }
+      }
+
+      &.new-list {
+        opacity: 0.3;
+        @include disBorderAndShadowOnFocus();
+        width: 100%;
+      }
+
+      &.new-list-edit {
+        textarea {
+          resize: none;
+        }
+      }
+
+      .todo {
+        position: relative;
+        word-wrap: break-word;
+        background-color: #8ccada;
+
+        .edit-button {
           color: black;
-          background-color: white;
+          position: absolute;
+          background-color: #8ccada;
+          border: none;
+          right: 0px;
+          top: 0px;
+          opacity: 0.75;
+
+          &:hover {
+            opacity: 1;
+          }
+
+          @include disBorderAndShadowOnFocus();
         }
       }
 
-      .menu-button {
-        vertical-align: top;
-        background-color: #5daae2;
-        border: none;
-
-        &:hover {
-          background-color: #5193c2;
-        }
-
-        &:active {
-          background-color: #3d7297;
-        }
-
-        &:active:focus,
-        &:focus {
-          outline: none;
-          box-shadow: none;
-        }
-      }
-    }
-
-    &.new-list {
-      opacity: 0.3;
-      @include disBorderAndShadowOnFocus();
-    }
-
-    &.new-list-edit {
-      textarea {
-        resize: none;
-      }
-    }
-
-    .todo {
-      position: relative;
-      word-wrap: break-word;
-      background-color: #8ccada;
-
-      .edit-button {
-        color: black;
-        position: absolute;
+      .new-todo {
+        word-wrap: break-word;
         background-color: #8ccada;
         border: none;
-        right: 0px;
-        top: 0px;
-        opacity: 0.75;
-
-        &:hover {
-          opacity: 1;
-        }
+        overflow: hidden;
+        resize: none;
 
         @include disBorderAndShadowOnFocus();
       }
-    }
 
-    .new-todo {
-      word-wrap: break-word;
-      background-color: #8ccada;
-      border: none;
-      overflow: hidden;
-      resize: none;
+      .footer {
+        button {
+          border: none;
+          background-color: #5daae2;
 
-      @include disBorderAndShadowOnFocus();
-    }
+          &:hover {
+            background-color: #8ccada;
+          }
 
-    .footer {
-      button {
-        border: none;
-        background-color: #5daae2;
-
-        &:hover {
-          background-color: #8ccada;
+          @include disBorderAndShadowOnFocus();
         }
-
-        @include disBorderAndShadowOnFocus();
       }
     }
   }
