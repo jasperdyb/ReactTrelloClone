@@ -7,6 +7,7 @@ import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "../dnd/constants.js";
 
 export default function List({
+  id,
   title,
   todos,
   listId,
@@ -14,6 +15,7 @@ export default function List({
   editList,
   updateMenuState,
   moveTodo,
+  moveList,
 }) {
   const [showNew, updateShowNew] = useState(false);
 
@@ -23,6 +25,7 @@ export default function List({
 
   const [, drag] = useDrag({
     item: {
+      id,
       orgListId: listId,
       type: ItemTypes.List,
     },
@@ -34,10 +37,12 @@ export default function List({
       isOverCurrent: monitor.isOver({ shallow: true }), //shallow為true時，若與子drop元件同時觸發hover，此項為false
     }),
     hover: (item, monitor) => {
+      const { orgListId } = item;
+      const endListId = listId;
+
       switch (item.type) {
         case "todo":
-          const { orgListId, orgTodoId } = item;
-          const endListId = listId;
+          const { orgTodoId } = item;
           const endTodoId = todos.length;
 
           if (orgListId !== endListId) {
@@ -55,7 +60,14 @@ export default function List({
           }
           break;
         case "list":
-          console.log("list");
+          if (orgListId !== endListId) {
+            moveList({
+              orgListId,
+              endListId,
+            });
+
+            item.orgListId = endListId;
+          }
           break;
         default:
           return;

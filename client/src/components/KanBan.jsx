@@ -11,7 +11,7 @@ export default function KanBan({ lists }) {
       <KanBanNav />
       <div className="board  p-1">
         {lists.map((list, index) => (
-          <List key={index} {...list} listId={index} />
+          <List key={list.id} {...list} listId={index} />
         ))}
         <NewList />
         <Edit />
