@@ -94,7 +94,11 @@ export default function List({
   drag(listRef);
 
   if (isDragging) {
-    return <div className="list p-2 m-1 rounded-lg" style={dragRect}></div>;
+    return (
+      <div className="list-wrapper">
+        <div className="list p-2 m-1 rounded-lg" style={dragRect}></div>
+      </div>
+    );
   } else {
     return (
       <div className="list-wrapper" ref={todoDrop}>

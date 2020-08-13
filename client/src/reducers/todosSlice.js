@@ -20,7 +20,9 @@ const dummyData = [
   },
 ];
 
-let currentId = 5;
+let currentTodoId = 5;
+
+let currentListId = 5;
 
 const todosSlice = createSlice({
   name: "todos",
@@ -29,7 +31,7 @@ const todosSlice = createSlice({
     addTodo(state, action) {
       const { listId, name } = action.payload;
       state[listId].todos.push({
-        id: (currentId += 1),
+        id: (currentTodoId += 1),
         name: name,
         finished: false,
       });
@@ -45,6 +47,7 @@ const todosSlice = createSlice({
     addList(state, action) {
       const { listName } = action.payload;
       state.push({
+        id: (currentListId += 1),
         title: listName,
         todos: [],
       });
