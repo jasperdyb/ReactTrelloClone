@@ -1,6 +1,9 @@
 import React from "react";
 import { ItemTypes } from "../dnd/constants.js";
 import { useDragLayer } from "react-dnd";
+import Todo from "./Todo";
+import ListTitle from "./ListTitle";
+import { Button } from "react-bootstrap";
 
 const layerStyles = {
   position: "fixed",
@@ -50,9 +53,25 @@ export default function CustomDragLayer() {
             </div>
           </div>
         );
+      case ItemTypes.List: //return pure list
+        return (
+          <div className="list-wrapper">
+            <div className="list p-2 m-1 rounded-lg ">
+              <ListTitle title={item.title} />
+              {item.todos.map((todo, index) => (
+                <Todo
+                  key={todo.id}
+                  {...todo}
+                  listId={item.listId}
+                  todoId={index}
+                />
+              ))}
+              <div className="footer d-flex">
+                <Button className="py-1 flex-grow-1 text-left">+ New</Button>
+              </div>
+            </div>
+          </div>
         );
-      case ItemTypes.List:
-        return null; //Pure list
       default:
         return null;
     }

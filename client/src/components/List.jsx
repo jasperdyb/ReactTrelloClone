@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Todo from "../containers/Todo";
 import NewTodo from "./NewTodo";
 import ListTitle from "./ListTitle";
 import { Button } from "react-bootstrap";
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "../dnd/constants.js";
+import { getEmptyImage } from "react-dnd-html5-backend";
 
 export default function List({
   id,
@@ -29,9 +30,11 @@ export default function List({
     updateShowNew(!showNew);
   }
 
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging }, drag, preview] = useDrag({
     item: {
       id,
+      title,
+      todos,
       orgListId: listId,
       type: ItemTypes.List,
     },
@@ -92,6 +95,10 @@ export default function List({
   });
 
   drag(listRef);
+
+  useEffect(() => {
+    preview(getEmptyImage(), { captureDraggingState: true });
+  }, [preview]);
 
   if (isDragging) {
     return (
