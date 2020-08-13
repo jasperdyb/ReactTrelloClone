@@ -23,11 +23,17 @@ export default function List({
     updateShowNew(!showNew);
   }
 
-  const [, drag] = useDrag({
+  const [{ isDragging }, drag] = useDrag({
     item: {
       id,
       orgListId: listId,
       type: ItemTypes.List,
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+    isDragging: (monitor) => {
+      return id === monitor.getItem().id;
     },
   });
 
@@ -77,7 +83,10 @@ export default function List({
 
   return (
     <div className="list-wrapper" ref={todoDrop}>
-      <div className="list p-2 m-1 rounded-lg" ref={drag}>
+      <div
+        className={`list p-2 m-1 rounded-lg ${isDragging ? "dragged" : ""}`}
+        ref={drag}
+      >
         <ListTitle
           title={title}
           editList={editList}
