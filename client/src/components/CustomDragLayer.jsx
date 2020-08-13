@@ -42,7 +42,14 @@ export default function CustomDragLayer() {
     switch (itemType) {
       case ItemTypes.TODO: //return pure todo
         return (
-          <div className="todo text-wrap my-1 p-2 rounded ">{item.name}</div>
+          <div className="list-wrapper">
+            <div className="list">
+              <div className="todo text-wrap my-1 p-2 rounded ">
+                {item.name}
+              </div>
+            </div>
+          </div>
+        );
         );
       case ItemTypes.List:
         return null; //Pure list
