@@ -3,7 +3,7 @@ import Todo from "../containers/Todo";
 import NewTodo from "./NewTodo";
 import ListTitle from "./ListTitle";
 import { Button } from "react-bootstrap";
-import { useDrop } from "react-dnd";
+import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "../dnd/constants.js";
 
 export default function List({
@@ -21,35 +21,51 @@ export default function List({
     updateShowNew(!showNew);
   }
 
-  const [isOverCurrent, drop] = useDrop({
-    accept: ItemTypes.TODO,
+  const [, drag] = useDrag({
+    item: {
+      orgListId: listId,
+      type: ItemTypes.List,
+    },
+  });
+
+  const [isOverCurrent, todoDrop] = useDrop({
+    accept: [ItemTypes.TODO, ItemTypes.List],
     collect: (monitor) => ({
       isOverCurrent: monitor.isOver({ shallow: true }), //shallow為true時，若與子drop元件同時觸發hover，此項為false
     }),
     hover: (item, monitor) => {
-      const { orgListId, orgTodoId } = item;
-      const endListId = listId;
-      const endTodoId = todos.length;
+      switch (item.type) {
+        case "todo":
+          const { orgListId, orgTodoId } = item;
+          const endListId = listId;
+          const endTodoId = todos.length;
 
-      if (orgListId !== endListId) {
-        if (isOverCurrent) {
-          moveTodo({
-            orgListId,
-            orgTodoId,
-            endListId,
-            endTodoId,
-          });
+          if (orgListId !== endListId) {
+            if (isOverCurrent) {
+              moveTodo({
+                orgListId,
+                orgTodoId,
+                endListId,
+                endTodoId,
+              });
 
-          item.orgListId = endListId;
-          item.orgTodoId = endTodoId;
-        }
+              item.orgListId = endListId;
+              item.orgTodoId = endTodoId;
+            }
+          }
+          break;
+        case "list":
+          console.log("list");
+          break;
+        default:
+          return;
       }
     },
   });
 
   return (
-    <div className="list-wrapper" ref={drop}>
-      <div className="list p-2 m-1 rounded-lg">
+    <div className="list-wrapper" ref={todoDrop}>
+      <div className="list p-2 m-1 rounded-lg" ref={drag}>
         <ListTitle
           title={title}
           editList={editList}

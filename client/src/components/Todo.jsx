@@ -18,7 +18,6 @@ export default function Todo({
 
   function handleOnOver() {
     if (!isDragging) {
-      console.log(todoId);
       setIsOver(true);
     }
   }
@@ -56,6 +55,9 @@ export default function Todo({
     }),
     isDragging: (monitor) => {
       return id === monitor.getItem().id;
+    },
+    begin: (monitor) => {
+      setIsOver(false);
     },
   });
 
@@ -109,7 +111,7 @@ export default function Todo({
   return (
     <div
       className={`todo text-wrap my-1 p-2 rounded ${
-        isDragging ? "dragged" : null
+        isDragging ? "dragged" : ""
       }`}
       ref={targetRef}
       onMouseEnter={handleOnOver}
