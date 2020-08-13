@@ -42,12 +42,6 @@
     .list {
       background-color: #5daae2;
 
-      &.dragged {
-        $draggingColor: #c5c1c1;
-        color: $draggingColor;
-        background-color: $draggingColor;
-      }
-
       .title {
         .title-text {
           color: white;
