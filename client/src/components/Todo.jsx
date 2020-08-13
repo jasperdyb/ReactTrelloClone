@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "react-bootstrap";
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "../dnd/constants.js";
+import { getEmptyImage } from "react-dnd-html5-backend";
 
 export default function Todo({
   id,
@@ -43,9 +44,10 @@ export default function Todo({
     });
   }
 
-  const [{ isDragging }, drag] = useDrag({
+  const [{ isDragging }, drag, preview] = useDrag({
     item: {
       id,
+      name,
       orgListId: listId,
       orgTodoId: todoId,
       type: ItemTypes.TODO,
@@ -107,6 +109,10 @@ export default function Todo({
   });
 
   drag(drop(targetRef));
+
+  useEffect(() => {
+    preview(getEmptyImage(), { captureDraggingState: true });
+  }, [preview]);
 
   return (
     <div
