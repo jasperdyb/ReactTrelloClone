@@ -20,7 +20,7 @@ function getItemStyles(initialOffset, currentOffset) {
     };
   }
   let { x, y } = currentOffset;
-  const transform = `translate(${x}px, ${y}px)`;
+  const transform = `translate(${x}px, ${y}px) rotate(5deg)`;
   return {
     transform,
     WebkitTransform: transform,
@@ -46,7 +46,7 @@ export default function CustomDragLayer() {
       case ItemTypes.TODO: //return pure todo
         return (
           <div className="list-wrapper">
-            <div className="list">
+            <div className="list rounded-lg">
               <div className="todo text-wrap my-1 p-2 rounded ">
                 {item.name}
               </div>
