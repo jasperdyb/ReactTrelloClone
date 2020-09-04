@@ -53,6 +53,29 @@
           box-shadow: none;
         }
       }
+
+      .edit-form {
+        background: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        width: 100%;
+        height: 75px;
+        left: 0px;
+        top: 0px;
+        z-index: 100;
+
+        textarea {
+          background-color: wheat;
+          word-wrap: break-word;
+          border: none;
+          overflow: hidden;
+          resize: none;
+
+          &:focus {
+            outline: none;
+            box-shadow: none;
+          }
+        }
+      }
     }
 
     textarea {
@@ -82,27 +105,6 @@
           outline: none;
           box-shadow: none;
         }
-      }
-    }
-  }
-
-  .edit-form {
-    background: rgba(0, 0, 0, 0.6);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-
-    textarea {
-      word-wrap: break-word;
-      border: none;
-      overflow: hidden;
-      resize: none;
-
-      &:focus {
-        outline: none;
-        box-shadow: none;
       }
     }
   }

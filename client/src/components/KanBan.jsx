@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import KanBanNav from "./KanBanNav";
 import List from "./List";
-import Edit from "./Edit";
 
 export default function KanBan() {
   const dummyData = [
@@ -64,7 +63,6 @@ export default function KanBan() {
             updateEditState={updateEditState}
           />
         ))}
-        {editState.show && <Edit editState={editState}></Edit>}
       </div>
     </span>
   );

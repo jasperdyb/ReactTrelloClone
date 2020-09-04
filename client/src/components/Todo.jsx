@@ -2,9 +2,11 @@ import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "react-bootstrap";
+import Edit from "./Edit";
 
 export default function Todo({ name, index, updateEditState }) {
   const [isOver, setIsOver] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const targetRef = useRef(null);
 
   function handleOnOver() {
@@ -18,16 +20,7 @@ export default function Todo({ name, index, updateEditState }) {
   function handelClickEdit(e) {
     e.preventDefault();
 
-    const { top, left, width } = targetRef.current.getBoundingClientRect();
-    updateEditState({
-      show: true,
-      dimensions: {
-        top: top,
-        left: left,
-        width: width,
-      },
-      value: name,
-    });
+    setIsEditing(true);
   }
 
   return (
@@ -43,6 +36,7 @@ export default function Todo({ name, index, updateEditState }) {
           <FontAwesomeIcon icon={faPencilAlt} />
         </Button>
       )}
+      {isEditing && <Edit />}
     </div>
   );
 }
