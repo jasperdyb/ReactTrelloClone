@@ -1,0 +1,187 @@
+@mixin disBorderAndShadowOnFocus {
+  &:active:focus,
+  &:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
+}
+
+.App {
+  background-color: #a1d9f0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+
+  // React-bootstrap 部件編譯後還是產出bootstrap原生的class
+  .navbar {
+    background-color: #18b3f0;
+
+    button {
+      background-color: blue;
+    }
+  }
+
+  .board {
+    white-space: nowrap;
+    overflow-x: auto;
+    flex-grow: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .row {
+    height: 0px;
+  }
+
+  .list-wrapper {
+    width: 252px;
+
+    .list {
+      background-color: #5daae2;
+
+      .title {
+        .title-text {
+          color: white;
+          width: 80%;
+          border: none;
+          overflow: hidden;
+          background-color: #5daae2;
+          vertical-align: top;
+          resize: none;
+
+          cursor: pointer;
+
+          &.editing {
+            color: black;
+            background-color: white;
+          }
+        }
+
+        .menu-button {
+          vertical-align: top;
+          background-color: #5daae2;
+          border: none;
+
+          &:hover {
+            background-color: #5193c2;
+          }
+
+          &:active {
+            background-color: #3d7297;
+          }
+
+          &:active:focus,
+          &:focus {
+            outline: none;
+            box-shadow: none;
+          }
+        }
+      }
+
+      &.new-list {
+        opacity: 0.3;
+        @include disBorderAndShadowOnFocus();
+        width: 100%;
+      }
+
+      &.new-list-edit {
+        textarea {
+          resize: none;
+        }
+      }
+
+      .todo {
+        position: relative;
+        word-wrap: break-word;
+        background-color: #8ccada;
+
+        .edit-button {
+          color: black;
+          position: absolute;
+          background-color: #8ccada;
+          border: none;
+          right: 0px;
+          top: 0px;
+          opacity: 0.75;
+
+          &:hover {
+            opacity: 1;
+          }
+
+          @include disBorderAndShadowOnFocus();
+        }
+
+        &.dragged {
+          $draggingColor: #c5c1c1;
+          color: $draggingColor;
+          background-color: $draggingColor;
+        }
+      }
+
+      .new-todo {
+        word-wrap: break-word;
+        background-color: #8ccada;
+        border: none;
+        overflow: hidden;
+        resize: none;
+
+        @include disBorderAndShadowOnFocus();
+      }
+
+      .footer {
+        button {
+          border: none;
+          background-color: #5daae2;
+
+          &:hover {
+            background-color: #8ccada;
+          }
+
+          @include disBorderAndShadowOnFocus();
+        }
+      }
+    }
+  }
+
+  .edit-form {
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    textarea {
+      word-wrap: break-word;
+      border: none;
+      overflow: hidden;
+      resize: none;
+
+      @include disBorderAndShadowOnFocus();
+    }
+
+    .edit-textarea,
+    .edit-side-menu {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+
+  .menu-layer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    .menu-item {
+      cursor: pointer;
+      &:active {
+        background-color: #e4f0f6;
+      }
+    }
+  }
+}
