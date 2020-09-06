@@ -36,13 +36,6 @@ export default function Edit({
     autoResize();
   }, [editRef]);
 
-  function toggleEditShow() {
-    updateEditState({
-      ...editState,
-      show: false,
-    });
-  }
-
   function updateValue(e) {
     updateEditState({
       ...editState,
@@ -51,7 +44,7 @@ export default function Edit({
   }
 
   return (
-    <Form className="edit-form" onClick={toggleEditShow}>
+    <Form className="edit-form" onClick={editTodo}>
       <div style={position}>
         <div className="edit-textarea">
           <Form.Control
