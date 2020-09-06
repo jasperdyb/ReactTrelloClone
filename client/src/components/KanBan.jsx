@@ -4,14 +4,16 @@ import List from "../containers/List";
 import Edit from "../containers/Edit";
 import NewList from "../containers/NewList";
 import ListMenu from "../containers/ListMenu";
+import CustomDragLayer from "./CustomDragLayer";
 
 export default function KanBan({ lists }) {
   return (
     <>
       <KanBanNav />
+      <CustomDragLayer />
       <div className="board  p-1">
         {lists.map((list, index) => (
-          <List key={index} {...list} listId={index} />
+          <List key={list.id} {...list} listId={index} />
         ))}
         <NewList />
         <Edit />

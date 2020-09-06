@@ -47,32 +47,39 @@ export default function NewList({ addList }) {
 
   if (!editing) {
     return (
-      <Button className="list p-2 m-1  rounded-lg new-list" onClick={showEdit}>
-        Add a new list...
-      </Button>
+      <div className="list-wrapper">
+        <Button
+          className="list p-2 m-1  rounded-lg new-list"
+          onClick={showEdit}
+        >
+          Add a new list...
+        </Button>
+      </div>
     );
   } else {
     return (
-      <div className="list p-2 m-1 rounded-lg new-list-edit">
-        <Form>
-          <Form.Control
-            as="textarea"
-            value={listName}
-            placeholder="Name the new list.."
-            ref={editRef}
-            onBlur={hideEdit}
-            onChange={updateValue}
-          />
-          <Button
-            type="submit"
-            className="mt-2"
-            onMouseDown={handleMouseDown}
-            onClick={handleClick}
-            onMouseUp={handleMouseUp}
-          >
-            Save
-          </Button>
-        </Form>
+      <div className="list-wrapper">
+        <div className="list p-2 m-1 rounded-lg new-list-edit">
+          <Form>
+            <Form.Control
+              as="textarea"
+              value={listName}
+              placeholder="Name the new list.."
+              ref={editRef}
+              onBlur={hideEdit}
+              onChange={updateValue}
+            />
+            <Button
+              type="submit"
+              className="mt-2"
+              onMouseDown={handleMouseDown}
+              onClick={handleClick}
+              onMouseUp={handleMouseUp}
+            >
+              Save
+            </Button>
+          </Form>
+        </div>
       </div>
     );
   }
