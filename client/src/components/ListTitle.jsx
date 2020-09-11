@@ -65,6 +65,10 @@ export default function ListTitle({
         defaultValue={title}
         onClick={editing ? null : handleOnClick}
         onBlur={handleEditTitle}
+        onDragStart={(e) => {
+          console.log("Drag");
+          e.preventDefault();
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             handleEditTitle(e);

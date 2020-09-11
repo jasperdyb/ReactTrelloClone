@@ -37,6 +37,7 @@ export default function List({
       todos,
       orgListId: listId,
       type: ItemTypes.List,
+      width: dragRect.width,
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
