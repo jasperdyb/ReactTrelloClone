@@ -42,7 +42,6 @@ export default function Edit({
   }, []);
 
   function toggleEditShow() {
-    editTodo({ value, listId, todoId });
     updateEditState({
       ...editState,
       show: false,
@@ -57,7 +56,13 @@ export default function Edit({
   }
 
   return (
-    <Form className="edit-form" onClick={toggleEditShow}>
+    <Form
+      className="edit-form"
+      onClick={() => {
+        editTodo({ value, listId, todoId });
+        toggleEditShow();
+      }}
+    >
       <div style={position}>
         <div className="edit-textarea">
           <Form.Control
@@ -66,7 +71,6 @@ export default function Edit({
             as="textarea"
             rows="3"
             value={editState.value}
-            // onBlur={toggleEditShow}
             onClick={(e) => {
               e.stopPropagation();
             }}
@@ -74,6 +78,7 @@ export default function Edit({
             onInput={autoResize}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
+                editTodo({ value, listId, todoId });
                 toggleEditShow();
               }
             }}
