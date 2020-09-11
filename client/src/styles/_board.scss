@@ -14,7 +14,7 @@ $clickable-active-color: #3d7297;
   align-items: stretch;
 
   .list-wrapper {
-    width: 252px;
+    flex: 0 0 252px;
 
     .list {
       background-color: $list-color;
