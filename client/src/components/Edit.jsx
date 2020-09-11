@@ -37,11 +37,12 @@ export default function Edit({
   }
 
   useEffect(() => {
-    if (editRef.current) editRef.current.focus();
+    editRef.current.select();
     autoResize();
-  }, [editRef]);
+  }, []);
 
   function toggleEditShow() {
+    editTodo({ value, listId, todoId });
     updateEditState({
       ...editState,
       show: false,
@@ -56,57 +57,52 @@ export default function Edit({
   }
 
   return (
-    <>
-      {editState.show && (
-        <Form className="edit-form" onClick={toggleEditShow}>
-          <div style={position}>
-            <div className="edit-textarea">
-              <Form.Control
-                style={textareaSize}
-                ref={editRef}
-                as="textarea"
-                rows="3"
-                value={editState.value}
-                // onBlur={toggleEditShow}
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-                onChange={updateValue}
-                onInput={autoResize}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    editTodo({ value, listId, todoId });
-                    toggleEditShow();
-                  }
-                }}
-              />
-              <Button
-                className="m-2"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  editTodo({ value, listId, todoId });
-                  toggleEditShow();
-                }}
-              >
-                Save
-              </Button>
-            </div>
-            <div className="edit-side-menu">
-              <Button
-                className="m-2"
-                variant="dark"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  deleteTodo({ listId, todoId });
-                  toggleEditShow();
-                }}
-              >
-                Delete
-              </Button>
-            </div>
-          </div>
-        </Form>
-      )}
-    </>
+    <Form className="edit-form" onClick={toggleEditShow}>
+      <div style={position}>
+        <div className="edit-textarea">
+          <Form.Control
+            style={textareaSize}
+            ref={editRef}
+            as="textarea"
+            rows="3"
+            value={editState.value}
+            // onBlur={toggleEditShow}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            onChange={updateValue}
+            onInput={autoResize}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                toggleEditShow();
+              }
+            }}
+          />
+          <Button
+            className="m-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              editTodo({ value, listId, todoId });
+              toggleEditShow();
+            }}
+          >
+            Save
+          </Button>
+        </div>
+        <div className="edit-side-menu">
+          <Button
+            className="m-2"
+            variant="dark"
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteTodo({ listId, todoId });
+              toggleEditShow();
+            }}
+          >
+            Delete
+          </Button>
+        </div>
+      </div>
+    </Form>
   );
 }

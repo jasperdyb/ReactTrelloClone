@@ -75,8 +75,7 @@
 
           &:active:focus,
           &:focus {
-            outline: none;
-            box-shadow: none;
+            @include disBorderAndShadowOnFocus();
           }
         }
       }

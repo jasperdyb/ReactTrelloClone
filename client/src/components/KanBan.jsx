@@ -6,7 +6,7 @@ import NewList from "../containers/NewList";
 import ListMenu from "../containers/ListMenu";
 import CustomDragLayer from "./CustomDragLayer";
 
-export default function KanBan({ lists }) {
+export default function KanBan({ lists, editState }) {
   return (
     <>
       <KanBanNav />
@@ -16,7 +16,7 @@ export default function KanBan({ lists }) {
           <List key={list.id} {...list} listId={index} />
         ))}
         <NewList />
-        <Edit />
+        {editState.show && <Edit />}
         <ListMenu />
       </div>
     </>
