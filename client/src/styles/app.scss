@@ -1,3 +1,9 @@
+$nav-color: #18b3f0;
+$board-color: #a1d9f0;
+$list-color: #5daae2;
+$clickable-hover-color: #5193c2;
+$clickable-active-color: #3d7297;
+
 @mixin disBorderAndShadowOnFocus {
   &:active:focus,
   &:focus {
@@ -6,8 +12,22 @@
   }
 }
 
+@mixin clickable {
+  &:hover {
+    background-color: $clickable-hover-color;
+  }
+
+  &:active {
+    background-color: $clickable-active-color;
+  }
+
+  &:active:focus,
+  &:focus {
+    @include disBorderAndShadowOnFocus();
+  }
+}
+
 .App {
-  background-color: #a1d9f0;
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -16,113 +36,115 @@
 
   // React-bootstrap 部件編譯後還是產出bootstrap原生的class
   .navbar {
-    background-color: #18b3f0;
-
-    button {
-      background-color: blue;
-    }
+    background-color: $nav-color;
   }
 
   .board {
+    background-color: $board-color;
     white-space: nowrap;
     overflow-x: auto;
     flex-grow: 3;
     display: flex;
     flex-direction: row;
     align-items: stretch;
-  }
 
-  .row {
-    height: 0px;
-  }
+    .list-wrapper {
+      width: 252px;
 
-  .list-wrapper {
-    width: 252px;
+      .list {
+        background-color: $list-color;
 
-    .list {
-      background-color: #5daae2;
+        .title {
+          .title-text {
+            color: white;
+            width: 80%;
+            border: none;
+            overflow: hidden;
+            background-color: transparent;
+            vertical-align: top;
+            resize: none;
 
-      .title {
-        .title-text {
-          color: white;
-          width: 80%;
-          border: none;
-          overflow: hidden;
-          background-color: #5daae2;
-          vertical-align: top;
-          resize: none;
+            &.editing {
+              color: black;
+              background-color: white;
+            }
+          }
 
-          cursor: pointer;
+          .menu-button {
+            vertical-align: top;
+            background-color: transparent;
+            border: none;
+            @include clickable();
+          }
+        }
 
-          &.editing {
+        &.new-list {
+          opacity: 0.3;
+          @include clickable();
+          width: 100%;
+        }
+
+        &.new-list-edit {
+          textarea {
+            resize: none;
+          }
+        }
+
+        .todo {
+          position: relative;
+          word-wrap: break-word;
+          background-color: #8ccada;
+
+          .edit-button {
             color: black;
-            background-color: white;
+            position: absolute;
+            background-color: #8ccada;
+            border: none;
+            right: 0px;
+            top: 0px;
+            opacity: 0.75;
+
+            @include clickable();
+          }
+
+          &.dragged {
+            $draggingColor: #c5c1c1;
+            color: $draggingColor;
+            background-color: $draggingColor;
           }
         }
 
-        .menu-button {
-          vertical-align: top;
-          background-color: #5daae2;
-          border: none;
-
-          &:hover {
-            background-color: #5193c2;
-          }
-
-          &:active {
-            background-color: #3d7297;
-          }
-
-          &:active:focus,
-          &:focus {
-            @include disBorderAndShadowOnFocus();
-          }
-        }
-      }
-
-      &.new-list {
-        opacity: 0.3;
-        @include disBorderAndShadowOnFocus();
-        width: 100%;
-      }
-
-      &.new-list-edit {
-        textarea {
-          resize: none;
-        }
-      }
-
-      .todo {
-        position: relative;
-        word-wrap: break-word;
-        background-color: #8ccada;
-
-        .edit-button {
-          color: black;
-          position: absolute;
+        .new-todo {
+          word-wrap: break-word;
           background-color: #8ccada;
           border: none;
-          right: 0px;
-          top: 0px;
-          opacity: 0.75;
-
-          &:hover {
-            opacity: 1;
-          }
+          overflow: hidden;
+          resize: none;
 
           @include disBorderAndShadowOnFocus();
         }
 
-        &.dragged {
-          $draggingColor: #c5c1c1;
-          color: $draggingColor;
-          background-color: $draggingColor;
+        .footer {
+          button {
+            border: none;
+            background-color: #5daae2;
+
+            @include clickable();
+          }
         }
       }
+    }
 
-      .new-todo {
+    .edit-form {
+      background: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+
+      textarea {
         word-wrap: break-word;
-        background-color: #8ccada;
         border: none;
         overflow: hidden;
         resize: none;
@@ -130,56 +152,23 @@
         @include disBorderAndShadowOnFocus();
       }
 
-      .footer {
-        button {
-          border: none;
-          background-color: #5daae2;
-
-          &:hover {
-            background-color: #8ccada;
-          }
-
-          @include disBorderAndShadowOnFocus();
-        }
+      .edit-textarea,
+      .edit-side-menu {
+        display: inline-block;
+        vertical-align: top;
       }
     }
-  }
 
-  .edit-form {
-    background: rgba(0, 0, 0, 0.6);
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    .menu-layer {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
 
-    textarea {
-      word-wrap: break-word;
-      border: none;
-      overflow: hidden;
-      resize: none;
-
-      @include disBorderAndShadowOnFocus();
-    }
-
-    .edit-textarea,
-    .edit-side-menu {
-      display: inline-block;
-      vertical-align: top;
-    }
-  }
-
-  .menu-layer {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-
-    .menu-item {
-      cursor: pointer;
-      &:active {
-        background-color: #e4f0f6;
+      .menu-item {
+        cursor: pointer;
+        @include clickable();
       }
     }
   }
