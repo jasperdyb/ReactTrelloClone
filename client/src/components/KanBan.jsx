@@ -5,10 +5,12 @@ import Edit from "../containers/Edit";
 import NewList from "../containers/NewList";
 import ListMenu from "../containers/ListMenu";
 import CustomDragLayer from "./CustomDragLayer";
+import Wallpaper from "./Wallpaper";
 
 export default function KanBan({ lists, editState }) {
   return (
     <>
+      <Wallpaper />
       <KanBanNav />
       <CustomDragLayer />
       <div className="board  p-1">

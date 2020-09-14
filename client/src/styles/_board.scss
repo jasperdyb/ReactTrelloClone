@@ -1,8 +1,8 @@
-$board-color: #a1d9f0;
-$list-color: #5daae2;
-$todo-color: #8ccada;
-$clickable-hover-color: #5193c2;
-$clickable-active-color: #3d7297;
+$board-color: transparent;
+$list-color: whitesmoke;
+$list-title-text-color: black;
+$todo-color: #c9cecf;
+$new-todo-button-color: black;
 
 .board {
   background-color: $board-color;
@@ -21,7 +21,7 @@ $clickable-active-color: #3d7297;
 
       .title {
         .title-text {
-          color: white;
+          color: $list-title-text-color;
           width: 80%;
           border: none;
           overflow: hidden;
@@ -44,9 +44,11 @@ $clickable-active-color: #3d7297;
       }
 
       &.new-list {
-        opacity: 0.3;
+        color: rgb(175, 166, 166);
+        opacity: 0.8;
         @include clickable();
         width: 100%;
+        border: none;
       }
 
       &.new-list-edit {
@@ -81,7 +83,7 @@ $clickable-active-color: #3d7297;
 
       .new-todo {
         word-wrap: break-word;
-        background-color: #8ccada;
+        background-color: transparent;
         border: none;
         overflow: hidden;
         resize: none;
@@ -92,7 +94,8 @@ $clickable-active-color: #3d7297;
       .footer {
         button {
           border: none;
-          background-color: #5daae2;
+          color: $new-todo-button-color;
+          background-color: transparent;
 
           @include clickable();
         }
