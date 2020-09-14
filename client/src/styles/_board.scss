@@ -2,6 +2,7 @@ $board-color: transparent;
 $list-color: whitesmoke;
 $list-title-text-color: black;
 $todo-color: #c9cecf;
+$todo-text-color: black;
 $new-todo-button-color: black;
 
 .board {
@@ -37,6 +38,7 @@ $new-todo-button-color: black;
 
         .menu-button {
           vertical-align: top;
+          color: $list-title-text-color;
           background-color: transparent;
           border: none;
           @include clickable();
@@ -60,6 +62,7 @@ $new-todo-button-color: black;
       .todo {
         position: relative;
         word-wrap: break-word;
+        color: $todo-text-color;
         background-color: $todo-color;
 
         .edit-button {
@@ -143,11 +146,19 @@ $new-todo-button-color: black;
 
 .drag-layer {
   .todo {
+    color: $todo-text-color;
     background-color: $todo-color !important;
   }
 
   .list {
+    color: $list-title-text-color;
     background-color: $list-color !important;
+
+    .title {
+      .title-text {
+        color: $list-title-text-color;
+      }
+    }
 
     textarea {
       color: white;
@@ -159,6 +170,7 @@ $new-todo-button-color: black;
 
     button {
       border: none;
+      color: $new-todo-button-color;
       background-color: transparent;
     }
   }

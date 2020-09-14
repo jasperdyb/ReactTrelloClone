@@ -5,7 +5,6 @@ export default function Wallpaper() {
 
   useEffect(() => {
     fetch("https://source.unsplash.com/1600x900/?nature").then((res) => {
-      console.log(res.url);
       setUrl(res.url);
     });
   }, []);
