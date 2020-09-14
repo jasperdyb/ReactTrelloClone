@@ -1,5 +1,5 @@
-$clickable-hover-color: #5193c2;
-$clickable-active-color: #3d7297;
+$clickable-hover-color: #a9adad;
+$clickable-active-color: #bec2c2;
 
 @mixin disBorderAndShadowOnFocus {
   &:active:focus,
@@ -34,4 +34,6 @@ $clickable-active-color: #3d7297;
   @import "navbar";
 
   @import "board";
+
+  @import "wall-paper";
 }

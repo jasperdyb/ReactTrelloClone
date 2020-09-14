@@ -1,8 +1,9 @@
-$board-color: #a1d9f0;
-$list-color: #5daae2;
-$todo-color: #8ccada;
-$clickable-hover-color: #5193c2;
-$clickable-active-color: #3d7297;
+$board-color: transparent;
+$list-color: whitesmoke;
+$list-title-text-color: black;
+$todo-color: #c9cecf;
+$todo-text-color: black;
+$new-todo-button-color: black;
 
 .board {
   background-color: $board-color;
@@ -21,7 +22,7 @@ $clickable-active-color: #3d7297;
 
       .title {
         .title-text {
-          color: white;
+          color: $list-title-text-color;
           width: 80%;
           border: none;
           overflow: hidden;
@@ -37,6 +38,7 @@ $clickable-active-color: #3d7297;
 
         .menu-button {
           vertical-align: top;
+          color: $list-title-text-color;
           background-color: transparent;
           border: none;
           @include clickable();
@@ -44,9 +46,11 @@ $clickable-active-color: #3d7297;
       }
 
       &.new-list {
-        opacity: 0.3;
+        color: rgb(175, 166, 166);
+        opacity: 0.8;
         @include clickable();
         width: 100%;
+        border: none;
       }
 
       &.new-list-edit {
@@ -58,6 +62,7 @@ $clickable-active-color: #3d7297;
       .todo {
         position: relative;
         word-wrap: break-word;
+        color: $todo-text-color;
         background-color: $todo-color;
 
         .edit-button {
@@ -81,7 +86,7 @@ $clickable-active-color: #3d7297;
 
       .new-todo {
         word-wrap: break-word;
-        background-color: #8ccada;
+        background-color: transparent;
         border: none;
         overflow: hidden;
         resize: none;
@@ -92,7 +97,8 @@ $clickable-active-color: #3d7297;
       .footer {
         button {
           border: none;
-          background-color: #5daae2;
+          color: $new-todo-button-color;
+          background-color: transparent;
 
           @include clickable();
         }
@@ -140,11 +146,19 @@ $clickable-active-color: #3d7297;
 
 .drag-layer {
   .todo {
+    color: $todo-text-color;
     background-color: $todo-color !important;
   }
 
   .list {
+    color: $list-title-text-color;
     background-color: $list-color !important;
+
+    .title {
+      .title-text {
+        color: $list-title-text-color;
+      }
+    }
 
     textarea {
       color: white;
@@ -156,6 +170,7 @@ $clickable-active-color: #3d7297;
 
     button {
       border: none;
+      color: $new-todo-button-color;
       background-color: transparent;
     }
   }
