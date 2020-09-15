@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const menuStateInit = {
   show: false,
+  render: false,
 };
 const kanBanMenuSlice = createSlice({
   name: "kanBandMenu",

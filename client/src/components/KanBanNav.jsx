@@ -4,7 +4,7 @@ import { Navbar, Button } from "react-bootstrap";
 export default function KanBanNav({ updateMenuState }) {
   function handleClick(e) {
     e.preventDefault();
-    updateMenuState({ show: true });
+    updateMenuState({ show: true, render: true });
   }
 
   return (

@@ -22,7 +22,7 @@ export default function KanBan({ lists, editState, kanBanMenuState }) {
         {editState.show && <Edit />}
         <ListMenu />
       </div>
-      {kanBanMenuState.show && <KanBanMenu />}
+      {kanBanMenuState.render && <KanBanMenu />}
     </>
   );
 }
