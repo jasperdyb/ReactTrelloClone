@@ -10,6 +10,8 @@ export default function KanBanMenu({ kanBanMenuState, updateMenuState }) {
     if (!kanBanMenuState.show) updateMenuState({ show: false, render: false });
   }
 
+  const wallPaperList = [0, 1, 2, 3, 4, 5];
+
   return (
     <div
       style={{
@@ -28,6 +30,15 @@ export default function KanBanMenu({ kanBanMenuState, updateMenuState }) {
       </button>
       <div className="w100 text-center py-2">Pick a wallpaper</div>
       <hr className="my-0 mx-3" />
+      <div className="wallpaper-collection py-1">
+        {wallPaperList.map((n) => {
+          return (
+            <div key={n} className="choice-wrapper">
+              <div className="choice m-1"></div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
