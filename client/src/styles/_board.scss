@@ -6,6 +6,7 @@ $todo-text-color: black;
 $new-todo-button-color: black;
 
 .board {
+  position: relative;
   background-color: $board-color;
   white-space: nowrap;
   overflow-x: auto;
