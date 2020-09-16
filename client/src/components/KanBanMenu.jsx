@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function KanBanMenu({ kanBanMenuState, updateMenuState }) {
+  const [unsplashUrls, setUrls] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}&count=20&orientation=landscape&query=nature`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((jsonData) => {
+        const flitteredData = jsonData.map((picData) => ({
+          id: picData.id,
+          url: `${picData.urls.raw}&fm=jpg&w=800&h=450&fit=max`,
+        }));
+        setUrls(flitteredData);
+      });
+  }, []);
+
   function handleClick(e) {
     e.preventDefault();
     updateMenuState({ show: false, render: true });
@@ -9,8 +27,6 @@ export default function KanBanMenu({ kanBanMenuState, updateMenuState }) {
   function onAnimationEnd() {
     if (!kanBanMenuState.show) updateMenuState({ show: false, render: false });
   }
-
-  const wallPaperList = [0, 1, 2, 3, 4, 5];
 
   return (
     <div
@@ -22,7 +38,7 @@ export default function KanBanMenu({ kanBanMenuState, updateMenuState }) {
     >
       <button
         type="button"
-        class="close"
+        className="close"
         aria-label="Close"
         onClick={handleClick}
       >
@@ -31,10 +47,10 @@ export default function KanBanMenu({ kanBanMenuState, updateMenuState }) {
       <div className="w100 text-center py-2">Pick a wallpaper</div>
       <hr className="my-0 mx-3" />
       <div className="wallpaper-collection py-1">
-        {wallPaperList.map((n) => {
+        {unsplashUrls.map((wallpaper) => {
           return (
-            <div key={n} className="choice-wrapper">
-              <div className="choice m-1"></div>
+            <div key={wallpaper.id} className="choice-wrapper p-1">
+              <img src={wallpaper.url} alt="" className="choice" />
             </div>
           );
         })}
