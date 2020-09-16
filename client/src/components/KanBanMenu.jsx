@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import WallpaperChoice from "../containers/WallpaperChoice";
 
 export default function KanBanMenu({
   kanBanMenuState,
@@ -32,20 +33,6 @@ export default function KanBanMenu({
     if (!kanBanMenuState.show) updateMenuState({ show: false, render: false });
   }
 
-  function handlePickWallpaper(id) {
-    console.log(id);
-
-    fetch(
-      `https://api.unsplash.com/photos/${id}/?client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((jsonData) => {
-        updateWallpaperUrl(`${jsonData.urls.raw}&fm=jpg&w=1600&h=900&fit=max`);
-      });
-  }
-
   return (
     <div
       style={{
@@ -67,16 +54,12 @@ export default function KanBanMenu({
       <div className="wallpaper-collection py-1">
         {unsplashUrls.map((wallpaper) => {
           return (
-            <div key={wallpaper.id} className="choice-wrapper p-1">
-              <img
-                src={wallpaper.url}
-                alt=""
-                className="choice"
-                onClick={(e) => {
-                  handlePickWallpaper(wallpaper.id);
-                }}
-              />
-            </div>
+            <WallpaperChoice
+              key={wallpaper.id}
+              wallpaperId={wallpaper.id}
+              wallpaperUrl={wallpaper.url}
+              updateWallpaperUrl
+            />
           );
         })}
       </div>

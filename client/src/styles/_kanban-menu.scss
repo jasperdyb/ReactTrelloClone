@@ -27,6 +27,7 @@
     overflow-y: auto;
 
     .choice-wrapper {
+      position: relative;
       width: 50%;
       padding-top: 28.125%;
       box-sizing: border-box;
@@ -43,6 +44,20 @@
         &:hover {
           transform: scale(0.95);
         }
+      }
+
+      &.loading {
+        opacity: 0.8;
+      }
+
+      .loading-icon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 50px;
+        margin-top: -25px;
+        width: 50px;
+        margin-left: -25px;
       }
     }
   }
