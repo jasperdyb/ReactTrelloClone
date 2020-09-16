@@ -43,7 +43,7 @@ export default function KanBanMenu({ kanBanMenuState, updateMenuState }) {
   return (
     <div
       style={{
-        animation: `${kanBanMenuState.show ? "slideIn" : "slideOut"} 1s`,
+        animation: `${kanBanMenuState.show ? "slideIn" : "slideOut"} 0.8s`,
       }}
       className="board-menu"
       onAnimationEnd={onAnimationEnd}
