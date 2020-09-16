@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WallpaperChoice from "../containers/WallpaperChoice";
 
-export default function KanBanMenu({
-  kanBanMenuState,
-  updateMenuState,
-  updateWallpaperUrl,
-}) {
+export default function KanBanMenu({ kanBanMenuState, updateMenuState }) {
   const [unsplashUrls, setUrls] = useState([]);
 
   useEffect(() => {

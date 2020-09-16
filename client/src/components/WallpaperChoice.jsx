@@ -18,7 +18,9 @@ export default function WallpaperChoice({
         return res.json();
       })
       .then((jsonData) => {
-        updateWallpaperUrl(`${jsonData.urls.raw}&fm=jpg&w=1600&h=900&fit=max`);
+        updateWallpaperUrl(
+          `${jsonData.urls.raw}&fm=jpg&w=${window.innerWidth}&h=${window.innerHeight}&fit=min`
+        );
       })
       .then(() => {
         setLoading(false);
