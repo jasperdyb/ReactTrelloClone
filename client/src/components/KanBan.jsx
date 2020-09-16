@@ -1,13 +1,14 @@
 import React from "react";
-import KanBanNav from "./KanBanNav";
+import KanBanNav from "../containers/KanBanNav";
 import List from "../containers/List";
 import Edit from "../containers/Edit";
 import NewList from "../containers/NewList";
 import ListMenu from "../containers/ListMenu";
 import CustomDragLayer from "./CustomDragLayer";
-import Wallpaper from "./Wallpaper";
+import Wallpaper from "../containers/Wallpaper";
+import KanBanMenu from "../containers/KanBanMenu";
 
-export default function KanBan({ lists, editState }) {
+export default function KanBan({ lists, editState, kanBanMenuState }) {
   return (
     <>
       <Wallpaper />
@@ -21,6 +22,7 @@ export default function KanBan({ lists, editState }) {
         {editState.show && <Edit />}
         <ListMenu />
       </div>
+      {kanBanMenuState.render && <KanBanMenu />}
     </>
   );
 }

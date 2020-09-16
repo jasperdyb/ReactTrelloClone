@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-export default function Wallpaper() {
-  const [unsplashUrl, setUrl] = useState("");
-
+export default function Wallpaper({ wallpaperUrl, updateWallpaperUrl }) {
   useEffect(() => {
     fetch("https://source.unsplash.com/1600x900/?nature").then((res) => {
-      setUrl(res.url);
+      updateWallpaperUrl(res.url);
     });
+    // eslint-disable-next-line
   }, []);
 
-  return <img src={unsplashUrl} alt="" className="wallpaper" />;
+  return <img src={wallpaperUrl} alt="" className="wallpaper" />;
 }

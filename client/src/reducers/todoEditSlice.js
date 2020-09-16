@@ -9,7 +9,7 @@ const editStateInit = {
 };
 
 const todoEditSlice = createSlice({
-  name: "todoEditState",
+  name: "todoEditSlice",
   initialState: editStateInit,
   reducers: {
     updateEditState(state, action) {
