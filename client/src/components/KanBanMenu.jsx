@@ -62,7 +62,7 @@ export default function KanBanMenu({
       >
         <span aria-hidden="true">&times;</span>
       </button>
-      <div className="w100 text-center py-2">Pick a wallpaper</div>
+      <div className="menu-title w100 text-center py-2">Pick a wallpaper</div>
       <hr className="my-0 mx-3" />
       <div className="wallpaper-collection py-1">
         {unsplashUrls.map((wallpaper) => {
