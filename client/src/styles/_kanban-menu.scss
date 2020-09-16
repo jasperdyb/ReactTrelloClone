@@ -27,6 +27,12 @@ $menu-width: 350px;
     justify-content: center;
     overflow-y: auto;
 
+    .error-message {
+      font-size: 15px;
+      text-align: center;
+      color: grey;
+    }
+
     .choice-wrapper {
       position: relative;
       width: 50%;
@@ -59,6 +65,7 @@ $menu-width: 350px;
         margin-top: -25px;
         width: 50px;
         margin-left: -25px;
+        z-index: 200;
       }
     }
   }
