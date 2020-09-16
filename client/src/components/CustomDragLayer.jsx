@@ -41,34 +41,34 @@ export default function CustomDragLayer() {
     currentOffset: monitor.getSourceClientOffset(),
     isDragging: monitor.isDragging(),
   }));
+
   function renderItem() {
     switch (itemType) {
       case ItemTypes.TODO: //return pure todo
         return (
-          <div className="list-wrapper">
-            <div className="list rounded-lg">
-              <div className="todo text-wrap my-1 p-2 rounded ">
-                {item.name}
-              </div>
+          <div style={{ width: item.width }}>
+            <div className="todo dragged-todo text-wrap my-1 p-2 rounded ">
+              {item.name}
             </div>
           </div>
         );
       case ItemTypes.List: //return pure list
         return (
-          <div className="list-wrapper">
-            <div className="list p-2 m-1 rounded-lg ">
-              <ListTitle title={item.title} />
-              {item.todos.map((todo, index) => (
-                <Todo
-                  key={todo.id}
-                  {...todo}
-                  listId={item.listId}
-                  todoId={index}
-                />
-              ))}
-              <div className="footer d-flex">
-                <Button className="py-1 flex-grow-1 text-left">+ New</Button>
-              </div>
+          <div
+            style={{ width: item.width }}
+            className="list p-2 m-1 rounded-lg "
+          >
+            <ListTitle title={item.title} />
+            {item.todos.map((todo, index) => (
+              <Todo
+                key={todo.id}
+                {...todo}
+                listId={item.listId}
+                todoId={index}
+              />
+            ))}
+            <div className="footer d-flex">
+              <Button className="py-1 flex-grow-1 text-left">+ New</Button>
             </div>
           </div>
         );

@@ -19,7 +19,8 @@ export default function NewList({ addList }) {
     updateBlock(true);
   }
 
-  function handleClick() {
+  function handleClick(e) {
+    e.preventDefault();
     if (listName) {
       addList({ listName });
       updateListName("");

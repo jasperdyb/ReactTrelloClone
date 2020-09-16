@@ -1,0 +1,178 @@
+$board-color: transparent;
+$list-color: whitesmoke;
+$list-title-text-color: black;
+$todo-color: #c9cecf;
+$todo-text-color: black;
+$new-todo-button-color: black;
+
+.board {
+  position: relative;
+  background-color: $board-color;
+  white-space: nowrap;
+  overflow-x: auto;
+  flex-grow: 3;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  .list-wrapper {
+    flex: 0 0 252px;
+
+    .list {
+      background-color: $list-color;
+
+      .title {
+        .title-text {
+          color: $list-title-text-color;
+          width: 80%;
+          border: none;
+          overflow: hidden;
+          background-color: transparent;
+          vertical-align: top;
+          resize: none;
+
+          &.editing {
+            color: black;
+            background-color: white;
+          }
+        }
+
+        .menu-button {
+          vertical-align: top;
+          color: $list-title-text-color;
+          background-color: transparent;
+          border: none;
+          @include clickable();
+        }
+      }
+
+      &.new-list {
+        color: rgb(175, 166, 166);
+        opacity: 0.8;
+        @include clickable();
+        width: 100%;
+        border: none;
+      }
+
+      &.new-list-edit {
+        textarea {
+          resize: none;
+        }
+      }
+
+      .todo {
+        position: relative;
+        word-wrap: break-word;
+        color: $todo-text-color;
+        background-color: $todo-color;
+
+        .edit-button {
+          color: black;
+          position: absolute;
+          background-color: transparent;
+          border: none;
+          right: 0px;
+          top: 0px;
+          opacity: 0.75;
+
+          @include clickable();
+        }
+
+        &.dragged {
+          $draggingColor: #c5c1c1;
+          color: $draggingColor;
+          background-color: $draggingColor;
+        }
+      }
+
+      .new-todo {
+        word-wrap: break-word;
+        background-color: transparent;
+        border: none;
+        overflow: hidden;
+        resize: none;
+
+        @include disBorderAndShadowOnFocus();
+      }
+
+      .footer {
+        button {
+          border: none;
+          color: $new-todo-button-color;
+          background-color: transparent;
+
+          @include clickable();
+        }
+      }
+    }
+  }
+
+  .edit-form {
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    textarea {
+      word-wrap: break-word;
+      border: none;
+      overflow: hidden;
+      resize: none;
+
+      @include disBorderAndShadowOnFocus();
+    }
+
+    .edit-textarea,
+    .edit-side-menu {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+
+  .menu-layer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    .menu-item {
+      cursor: pointer;
+      @include clickable();
+    }
+  }
+}
+
+.drag-layer {
+  .todo {
+    color: $todo-text-color;
+    background-color: $todo-color !important;
+  }
+
+  .list {
+    color: $list-title-text-color;
+    background-color: $list-color !important;
+
+    .title {
+      .title-text {
+        color: $list-title-text-color;
+      }
+    }
+
+    textarea {
+      color: white;
+      border: none;
+      overflow: hidden;
+      background-color: transparent;
+      resize: none;
+    }
+
+    button {
+      border: none;
+      color: $new-todo-button-color;
+      background-color: transparent;
+    }
+  }
+}

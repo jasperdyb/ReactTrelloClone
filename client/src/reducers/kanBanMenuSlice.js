@@ -2,11 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const menuStateInit = {
   show: false,
-  dimensions: { top: 0, left: 0 },
-  listId: -1,
+  render: false,
 };
-const listMenuSlice = createSlice({
-  name: "listMenu",
+const kanBanMenuSlice = createSlice({
+  name: "kanBandMenu",
   initialState: menuStateInit,
   reducers: {
     updateMenuState(state, action) {
@@ -15,6 +14,6 @@ const listMenuSlice = createSlice({
   },
 });
 
-export const { updateMenuState } = listMenuSlice.actions;
+export const { updateMenuState } = kanBanMenuSlice.actions;
 
-export default listMenuSlice.reducer;
+export default kanBanMenuSlice.reducer;

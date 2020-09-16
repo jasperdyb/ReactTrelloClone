@@ -51,6 +51,9 @@ export default function Todo({
       orgListId: listId,
       orgTodoId: todoId,
       type: ItemTypes.TODO,
+      width: targetRef.current
+        ? targetRef.current.getBoundingClientRect().width
+        : null,
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),

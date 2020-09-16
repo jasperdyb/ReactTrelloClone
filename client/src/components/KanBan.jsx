@@ -1,14 +1,17 @@
 import React from "react";
-import KanBanNav from "./KanBanNav";
+import KanBanNav from "../containers/KanBanNav";
 import List from "../containers/List";
 import Edit from "../containers/Edit";
 import NewList from "../containers/NewList";
 import ListMenu from "../containers/ListMenu";
 import CustomDragLayer from "./CustomDragLayer";
+import Wallpaper from "../containers/Wallpaper";
+import KanBanMenu from "../containers/KanBanMenu";
 
-export default function KanBan({ lists }) {
+export default function KanBan({ lists, editState, kanBanMenuState }) {
   return (
     <>
+      <Wallpaper />
       <KanBanNav />
       <CustomDragLayer />
       <div className="board  p-1">
@@ -16,9 +19,10 @@ export default function KanBan({ lists }) {
           <List key={list.id} {...list} listId={index} />
         ))}
         <NewList />
-        <Edit />
+        {editState.show && <Edit />}
         <ListMenu />
       </div>
+      {kanBanMenuState.render && <KanBanMenu />}
     </>
   );
 }
