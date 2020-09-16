@@ -5,7 +5,7 @@ import Edit from "../containers/Edit";
 import NewList from "../containers/NewList";
 import ListMenu from "../containers/ListMenu";
 import CustomDragLayer from "./CustomDragLayer";
-import Wallpaper from "./Wallpaper";
+import Wallpaper from "../containers/Wallpaper";
 import KanBanMenu from "../containers/KanBanMenu";
 
 export default function KanBan({ lists, editState, kanBanMenuState }) {
